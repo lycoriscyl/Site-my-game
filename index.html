@@ -1813,17 +1813,11 @@
             let sceneStep = 0;
             let frame = 0;
             let dialogue = [
-                { text: "A Carousel of Memories...", duration: 90 },
-                { text: "Joan: 'Christina, always remember...\nNo wire hangers.'", duration: 150 },
-                { text: "Christina: 'But Mommie, I just want to play!'", duration: 120 },
-                { text: "Joan: 'There are rules in this house.'", duration: 120 },
-                { text: "The carousel spins faster...", duration: 60 },
-                { text: "Christina: 'I'll be good, I promise!'", duration: 120 },
-                { text: "Joan: 'We'll see.'", duration: 90 },
-                { text: "A tense silence fills the air...", duration: 60 },
-                { text: "The ride slows. The lesson lingers.", duration: 60 }
+                { speaker: "Joan", text: "Are you having a happy birthday, Christina, darling?", duration: 180 }, // Approx 3 seconds
+                { speaker: "Christina", text: "This is the best birthday I ever had! I love you, Mommie Dearest!", duration: 300 }, // Approx 5 seconds
+                { speaker: "Joan", text: "I love you too, Christina!", duration: 180 } // Approx 3 seconds
             ];
-            let currentText = dialogue[0].text;
+            let currentText = dialogue[0].speaker + ": " + dialogue[0].text;
             let textAlpha = 1;
             let fadeIn = true;
             let fadeFrame = 0;
@@ -1832,50 +1826,136 @@
 
             function drawCutscene() {
                 csCtx.clearRect(0, 0, cutsceneCanvas.width, cutsceneCanvas.height);
-                // Background
-                csCtx.fillStyle = '#2a1440';
+
+                // 1. Background:
+                csCtx.fillStyle = '#87CEEB'; // Light Sky Blue
                 csCtx.fillRect(0, 0, cutsceneCanvas.width, cutsceneCanvas.height);
-                // Carousel base
+
+                // 2. Carousel Elements:
                 const cx = cutsceneCanvas.width / 2;
-                const cy = cutsceneCanvas.height * 0.7;
-                const baseR = cutsceneCanvas.height * 0.28;
-                csCtx.save();
-                csCtx.translate(cx, cy);
-                csCtx.rotate(carouselAngle);
+                const cy = cutsceneCanvas.height * 0.75; // Lowered for more sky
+                const carouselRadius = cutsceneCanvas.width * 0.35;
+                const poleWidth = 15;
+                const animalHeight = 40;
+                const animalWidth = 25;
+                const numAnimals = 4; // Or more, for visual density
+                const bobAmplitude = 10;
+                const bobFrequency = 5;
+                const pScale = 1.5; // Smaller scale for cutscene
+
+                // Central Pole:
+                csCtx.fillStyle = '#CD7F32'; // Bronze-ish
+                csCtx.fillRect(cx - poleWidth / 2, cy - carouselRadius * 1.2, poleWidth, carouselRadius * 1.2);
+
+                // Carousel Base (Static part under rotating part):
+                csCtx.fillStyle = '#FFD700'; // Gold
                 csCtx.beginPath();
-                csCtx.ellipse(0, 0, baseR, baseR * 0.25, 0, 0, Math.PI * 2);
-                csCtx.fillStyle = '#FFD700';
+                csCtx.ellipse(cx, cy, carouselRadius, carouselRadius * 0.3, 0, 0, Math.PI * 2);
                 csCtx.fill();
-                csCtx.restore();
-                // Carousel pole
-                csCtx.fillStyle = '#8B4513';
-                csCtx.fillRect(cx - 6, cy - baseR * 0.9, 12, baseR * 0.9 + 20);
-                // Characters (simple)
-                // Joan
-                let joanX = cx + Math.cos(carouselAngle) * (baseR * 0.7);
-                let joanY = cy + Math.sin(carouselAngle) * (baseR * 0.18);
-                csCtx.fillStyle = '#000080';
-                csCtx.fillRect(joanX - 12, joanY - 32, 24, 32);
-                csCtx.fillStyle = '#FFDBAC';
-                csCtx.fillRect(joanX - 8, joanY - 44, 16, 14);
-                // Christina
-                let chrisX = cx - Math.cos(carouselAngle) * (baseR * 0.7);
-                let chrisY = cy - Math.sin(carouselAngle) * (baseR * 0.18);
-                csCtx.fillStyle = '#FFC0CB';
-                csCtx.fillRect(chrisX - 12, chrisY - 32, 24, 32);
-                csCtx.fillStyle = '#FFE4E1';
-                csCtx.fillRect(chrisX - 8, chrisY - 44, 16, 14);
-                // Text box
+                csCtx.fillStyle = '#DC143C'; // Crimson decorative band
+                csCtx.beginPath();
+                csCtx.ellipse(cx, cy, carouselRadius, carouselRadius * 0.3, 0, Math.PI, 0); // Lower half for band
+                csCtx.ellipse(cx, cy, carouselRadius * 0.95, carouselRadius * 0.28, 0, 0, Math.PI, true); // Inner part of band
+                csCtx.fill();
+
+                // Animals (Loop):
+                for (let i = 0; i < numAnimals; i++) {
+                    const animalAngle = carouselAngle + (Math.PI * 2 * i) / numAnimals;
+                    const animalX = cx + Math.cos(animalAngle) * carouselRadius * 0.75;
+                    const verticalBob = Math.sin(carouselAngle * bobFrequency + (Math.PI * 2 * i) / numAnimals) * bobAmplitude;
+                    const animalY = cy - carouselRadius * 0.1 - animalHeight / 2 + verticalBob; // Positioned on the upper part of the base
+
+                    // Animal Pole:
+                    csCtx.fillStyle = '#A9A9A9'; // DarkGray
+                    csCtx.fillRect(animalX - 2, cy - carouselRadius * 0.1 - animalHeight - 10 + verticalBob, 4, animalHeight + 10);
+
+                    // Animal Body (simple shape, e.g., horse-like):
+                    csCtx.fillStyle = (i % 2 === 0) ? '#D2B48C' : '#C0C0C0'; // Tan or Silver for variety
+                    csCtx.beginPath();
+                    csCtx.ellipse(animalX, animalY, animalWidth, animalHeight / 1.5, 0, 0, Math.PI * 2);
+                    csCtx.fill();
+                    // Simple head
+                    csCtx.beginPath();
+                    csCtx.arc(animalX + animalWidth * 0.75, animalY - animalHeight * 0.25, animalHeight * 0.3, 0, Math.PI * 2);
+                    csCtx.fill();
+                    // Simple tail
+                    csCtx.fillRect(animalX - animalWidth * 0.9, animalY, animalWidth * 0.5, 5);
+
+                    // Christina (on animal 0):
+                    if (i === 0) {
+                        const christinaOnAnimalX = animalX;
+                        const christinaOnAnimalY = animalY - animalHeight * 0.5; // Adjust so she's 'on' it
+                        // Simplified Christina Drawing for Cutscene
+                        //const pScale = 1.5; // Smaller scale for cutscene - defined above
+                        const csChristinaWidth = CHRISTINA_SPRITE_WIDTH * pScale / 2;
+                        const csChristinaHeight = CHRISTINA_SPRITE_HEIGHT * pScale / 2;
+                        const csBaseX = christinaOnAnimalX - csChristinaWidth / 2;
+                        const csBaseY = christinaOnAnimalY - csChristinaHeight;
+
+                        csCtx.fillStyle = '#FFDBAC'; // Skin tone
+                        csCtx.fillRect(csBaseX + pScale*3, csBaseY + pScale*5, pScale*6, pScale*3); // Face
+                        csCtx.fillStyle = '#50C878'; // Dress color (matches in-game Christina)
+                        csCtx.fillRect(csBaseX + pScale*1, csBaseY + pScale*9, pScale*10, pScale*5); // Dress body
+                        csCtx.fillStyle = '#FFFFFF'; // Hair bow / decoration
+                        csCtx.fillRect(csBaseX + pScale*3, csBaseY, pScale*6, pScale*2); // Hair top
+                        // Simplified arms/legs if desired, or omit for simplicity
+                        csCtx.fillStyle = '#FFDBAC'; // Skin for arms
+                        csCtx.fillRect(csBaseX, csBaseY + pScale*9, pScale*2, pScale*3); // Left arm
+                        csCtx.fillRect(csBaseX + pScale*10, csBaseY + pScale*9, pScale*2, pScale*3); // Right arm
+                    }
+
+                    // Joan (on animal 1, or another animal not Christina's):
+                    if (i === 1) { // Ensure this is a different animal than Christina
+                        const joanOnAnimalX = animalX;
+                        const joanOnAnimalY = animalY - animalHeight * 0.5; // Adjust so she's 'on' it
+                        // Joan's New Sprite Drawing
+                        //const pScale = 1.5; // Defined above
+                        const joanDressWidth = 30 * pScale / 2;
+                        const joanDressHeight = 35 * pScale / 2;
+                        const joanHatDiam = 28 * pScale / 2;
+                        const jBaseX = joanOnAnimalX - joanDressWidth / 2;
+                        const jBaseY = joanOnAnimalY - joanDressHeight;
+
+                        csCtx.fillStyle = '#FFFFFF'; // White dress
+                        csCtx.beginPath();
+                        csCtx.moveTo(jBaseX, jBaseY + joanDressHeight * 0.2);
+                        csCtx.lineTo(jBaseX + joanDressWidth / 2, jBaseY);
+                        csCtx.lineTo(jBaseX + joanDressWidth, jBaseY + joanDressHeight * 0.2);
+                        csCtx.lineTo(jBaseX + joanDressWidth * 0.8, jBaseY + joanDressHeight);
+                        csCtx.lineTo(jBaseX + joanDressWidth * 0.2, jBaseY + joanDressHeight);
+                        csCtx.closePath();
+                        csCtx.fill();
+
+                        csCtx.fillStyle = '#FFDBAC'; // Skin tone (face)
+                        csCtx.beginPath();
+                        csCtx.arc(joanOnAnimalX, jBaseY - joanHatDiam * 0.3, 8 * pScale / 2, 0, Math.PI * 2);
+                        csCtx.fill();
+
+                        csCtx.fillStyle = '#FFFFFF'; // White hat
+                        csCtx.beginPath();
+                        csCtx.ellipse(joanOnAnimalX, jBaseY - joanHatDiam * 0.5, joanHatDiam / 2, joanHatDiam / 3, 0, 0, Math.PI * 2); // Hat brim
+                        csCtx.fill();
+                        csCtx.beginPath();
+                        csCtx.arc(joanOnAnimalX, jBaseY - joanHatDiam * 0.7, joanHatDiam / 3, 0, Math.PI * 2); // Hat crown
+                        csCtx.fill();
+                        csCtx.fillStyle = '#FF69B4'; // Pink hatband
+                        csCtx.fillRect(joanOnAnimalX - joanHatDiam/2.5, jBaseY - joanHatDiam * 0.6, joanHatDiam/1.25, 3 * pScale/2 );
+                    }
+                }
+
+                // 3. Dialogue Text Display (at the bottom, similar to existing):
                 csCtx.save();
-                csCtx.globalAlpha = textAlpha;
+                csCtx.globalAlpha = textAlpha; // textAlpha is managed by cutsceneLoop
                 csCtx.fillStyle = 'rgba(0,0,0,0.7)';
-                csCtx.fillRect(20, cutsceneCanvas.height - 70, cutsceneCanvas.width - 40, 50);
+                csCtx.fillRect(10, cutsceneCanvas.height - 80, cutsceneCanvas.width - 20, 70);
                 csCtx.font = 'bold 13px "Press Start 2P", monospace';
                 csCtx.fillStyle = '#fff';
                 csCtx.textAlign = 'center';
-                let lines = currentText.split('\n');
-                for(let i=0; i<lines.length; i++) {
-                    csCtx.fillText(lines[i], cutsceneCanvas.width/2, cutsceneCanvas.height - 45 + i*18);
+                // currentText is already set by startCarouselCutscene/advanceScene with "Speaker: Text"
+                // Handle multi-line text if needed by splitting currentText by '\n'
+                const lines = currentText.split('\n');
+                for(let k=0; k < lines.length; k++) {
+                    csCtx.fillText(lines[k], cutsceneCanvas.width/2, cutsceneCanvas.height - 55 + k*18);
                 }
                 csCtx.restore();
             }
@@ -1883,7 +1963,7 @@
             function advanceScene() {
                 sceneStep++;
                 if(sceneStep < dialogue.length) {
-                    currentText = dialogue[sceneStep].text;
+                    currentText = dialogue[sceneStep].speaker + ": " + dialogue[sceneStep].text;
                     fadeIn = true;
                     fadeFrame = 0;
                 } else {
@@ -1903,13 +1983,15 @@
             function cutsceneLoop() {
                 if (!cutsceneActive) return;
                 frame++;
-                carouselAngle += carouselSpeed + (sceneStep > 3 ? 0.01 : 0);
-                if (carouselAngle > Math.PI * 2) carouselAngle -= Math.PI * 2;
+                carouselAngle -= carouselSpeed; // Changed to decrement for clockwise
+                if (carouselAngle < 0) {       // Ensure positive angle for consistency
+                    carouselAngle += Math.PI * 2;
+                }
                 // Fade in/out text
                 if (fadeIn) {
                     textAlpha += 0.08;
                     if (textAlpha >= 1) { textAlpha = 1; fadeIn = false; fadeFrame = 0; }
-                } else if (frame > dialogue[sceneStep].duration) {
+                } else if (frame > dialogue[sceneStep].duration) { // Check duration from dialogue object
                     textAlpha -= 0.08;
                     if (textAlpha <= 0) { textAlpha = 0; advanceScene(); frame = 0; }
                 }
@@ -1922,7 +2004,7 @@
             fadeFrame = 0;
             frame = 0;
             sceneStep = 0;
-            currentText = dialogue[0].text;
+            currentText = dialogue[0].speaker + ": " + dialogue[0].text;
             cutsceneLoop();
         }
 
