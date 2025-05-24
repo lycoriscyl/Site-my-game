@@ -660,7 +660,7 @@
 
         // Level 2 Constants
         const MAX_LEVEL_2_HITS = 3;
-        const TILES_TO_WIN_LEVEL_2 = 30;
+        const TILES_TO_WIN_LEVEL_2 = 20;
         const BATH_TILE_SIZE = 40;
         const BATH_TILE_COLOR_CLEAN = '#ADD8E6';
         const BATH_TILE_COLOR_STAGE_1 = '#FFFFE0';
@@ -686,7 +686,7 @@
         // Level 3 Constants
         const HELGA_WIDTH = 20;
         const HELGA_HEIGHT = 40;
-        const HELGA_COLOR = '#808080';
+        const HELGA_COLOR = '#8A2BE2';
         const HELGA_SPEED = 2.5;
         const JOAN_FOLLOWER_SPEED = 0.7;
         const LEVEL3_ROOM_WIDTH = 1200;
@@ -897,6 +897,8 @@
             if (currentLevel === 3) {
                 ctx.fillStyle = HELGA_COLOR;
                 ctx.fillRect(baseX, baseY, currentPlayer.width, currentPlayer.height);
+                ctx.fillStyle = '#FFDBAC'; // A light skin/apron color
+                ctx.fillRect(baseX + currentPlayer.width * 0.25, baseY + currentPlayer.height * 0.1, currentPlayer.width * 0.5, currentPlayer.height * 0.25);
                 ctx.fillStyle = '#FFE4C4';
                 ctx.fillRect(baseX + currentPlayer.width * 0.25, baseY - currentPlayer.height * 0.2, currentPlayer.width * 0.5, currentPlayer.height * 0.2);
                 ctx.fillStyle = '#A9A9A9';
@@ -974,10 +976,10 @@
             const currentPlayerObject = (currentLevel === 3) ? helga : christina;
             const currentSpeed = currentPlayerObject.speed;
 
-            if (keysPressed['w'] || keysPressed['ArrowUp']) dy -= currentSpeed;
-            if (keysPressed['s'] || keysPressed['ArrowDown']) dy += currentSpeed;
-            if (keysPressed['a'] || keysPressed['ArrowLeft']) dx -= currentSpeed;
-            if (keysPressed['d'] || keysPressed['ArrowRight']) dx += currentSpeed;
+            if (keysPressed['w'] || keysPressed['arrowup']) dy -= currentSpeed;
+            if (keysPressed['s'] || keysPressed['arrowdown']) dy += currentSpeed;
+            if (keysPressed['a'] || keysPressed['arrowleft']) dx -= currentSpeed;
+            if (keysPressed['d'] || keysPressed['arrowright']) dx += currentSpeed;
 
             currentPlayerObject.x += dx;
 
@@ -1611,8 +1613,8 @@
 
         function initLevel3Objects() {
             level3Objects = [];
-            level3Objects.push({ x: 250, y: canvas.height - 50, width: 30, height: 50, type: 'vase', isClean: false, isPlanter: false, color: '#FFC0CB' });
-            level3Objects.push({ x: 500, y: canvas.height - 70, width: 80, height: 70, type: 'table', isClean: false, isPlanter: false, color: '#D2B48C' });
+            level3Objects.push({ x: 250, y: canvas.height - 50, width: 30, height: 50, type: 'vase', isClean: false, isPlanter: false, color: '#FF1493' });
+            level3Objects.push({ x: 500, y: canvas.height - 70, width: 80, height: 70, type: 'table', isClean: false, isPlanter: false, color: '#A0522D' });
 
             planterObject = {
                 x: LEVEL3_ROOM_WIDTH - 150,
@@ -1668,7 +1670,7 @@
         function drawJoanFollower() {
             const joanCanvasX = joanFollower.x - cameraX;
             if (joanCanvasX + joanFollower.width > 0 && joanCanvasX < canvas.width) {
-                ctx.fillStyle = '#AA0000';
+                ctx.fillStyle = '#4B0082';
                 ctx.fillRect(joanCanvasX, joanFollower.y - joanFollower.height, joanFollower.width, joanFollower.height);
             }
         }
