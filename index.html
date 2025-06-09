@@ -20,18 +20,16 @@
             padding: 0; /* Full bleed for title screen */
             overflow: hidden; /* Prevent body scroll */
         }
-
-        .game-outer-container {
+        .game-outer-container { 
             width: 100%;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 10px; 
             box-sizing: border-box;
             position: relative; /* For absolute positioning of overlay screens */
         }
-
         #mainTitleScreen {
             width: 100%;
             height: 100%;
@@ -47,40 +45,32 @@
             padding: 20px;
             box-sizing: border-box;
             text-shadow: 2px 2px 4px #000000;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 4000;
+            position: absolute; top:0; left:0; z-index: 4000;
         }
-
-            #mainTitleScreen h1 {
-                font-size: 2.5em;
-                margin-bottom: 0.5em;
-                color: #ff69b4;
-            }
-
-            #mainTitleScreen h2.subtitle { /* For potential future subtitle on main screen */
-                font-size: 1.5em;
-                margin-bottom: 1.5em;
-                color: #f0f0f0;
-            }
-
-            #mainTitleScreen button {
-                padding: 15px 30px;
-                font-size: 1.2em;
-                color: #000000 !important;
-                background-color: #f0f0f0;
-                border-color: #cccccc;
-                box-shadow: 2px 2px 0 #aaaaaa;
-                margin: 10px; /* Add some margin between buttons */
-            }
-
-                #mainTitleScreen button:active {
-                    transform: translate(2px, 2px);
-                    box-shadow: none;
-                    background-color: #dddddd;
-                }
-
+        #mainTitleScreen h1 {
+            font-size: 2.5em; 
+            margin-bottom: 0.5em; 
+            color: #ff69b4; 
+        }
+         #mainTitleScreen h2.subtitle { /* For potential future subtitle on main screen */
+            font-size: 1.5em;
+            margin-bottom: 1.5em;
+            color: #f0f0f0;
+        }
+        #mainTitleScreen button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #000000 !important; 
+            background-color: #f0f0f0; 
+            border-color: #cccccc; 
+            box-shadow: 2px 2px 0 #aaaaaa;
+            margin: 10px; /* Add some margin between buttons */
+        }
+         #mainTitleScreen button:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+            background-color: #dddddd;
+        }
         #levelTransitionScreen, #cutsceneScreen { /* Shared style for full overlay screens */
             width: 100%;
             height: 100%;
@@ -91,32 +81,19 @@
             text-align: center;
             color: #FFFFFF;
             text-shadow: 2px 2px 4px #000000;
-            z-index: 3000;
-            position: absolute;
+            z-index: 3000; 
+            position: absolute; 
             top: 0;
             left: 0;
         }
+        #levelTransitionScreen { background-color: #100818; }
+        #cutsceneScreen { background-color: #181010; }
 
-        #levelTransitionScreen {
-            background-color: #100818;
-        }
-
-        #cutsceneScreen {
-            background-color: #181010;
-        }
-
-        #levelTransitionScreen p {
-            font-size: 3em;
-            margin-bottom: 0.2em;
-        }
-
-        #levelTransitionScreen h2 {
-            font-size: 1.8em;
-            color: #ff69b4;
-        }
-
+        #levelTransitionScreen p { font-size: 3em; margin-bottom: 0.2em; }
+        #levelTransitionScreen h2 { font-size: 1.8em; color: #ff69b4; }
+        
         #cutsceneCanvas {
-            background-color: #282020;
+            background-color: #282020; 
             border: 2px solid #403040;
             max-width: 90%;
             max-height: 80vh;
@@ -125,312 +102,125 @@
 
 
         .game-container {
-            background-color: #302040;
-            border: 4px solid #504060;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
+            background-color: #302040; border: 4px solid #504060;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); padding: 10px;
+            border-radius: 8px; text-align: center; width: 100%; max-width: 500px;
+            display: flex; flex-direction: column; align-items: center; position: relative; 
         }
-
         canvas { /* Main game canvas */
-            background-color: #1a0a23;
-            border: 2px solid #504060;
-            margin: 0 auto 10px auto;
-            max-width: 100%;
-            height: auto;
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            touch-action: none;
+            background-color: #1a0a23; border: 2px solid #504060;
+            margin: 0 auto 10px auto; max-width: 100%; height: auto;
+            image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;
+            touch-action: none; 
         }
-
         .ui-element {
-            background-color: #403050;
-            border: 2px solid #605070;
-            padding: 6px 10px;
-            margin: 3px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            display: inline-block;
+            background-color: #403050; border: 2px solid #605070;
+            padding: 6px 10px; margin: 3px; border-radius: 4px;
+            font-size: 0.8em; display: inline-block;
         }
-
-        button, .touch-button {
-            font-family: 'Press Start 2P', cursive;
-            background-color: #ff69b4;
-            color: #fff;
-            border: 2px solid #ff1493;
-            padding: 10px 15px;
-            margin-top: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            box-shadow: 2px 2px 0 #c71585;
-            transition: all 0.1s ease;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -webkit-tap-highlight-color: transparent;
+        button, .touch-button { 
+            font-family: 'Press Start 2P', cursive; background-color: #ff69b4;
+            color: #fff; border: 2px solid #ff1493; padding: 10px 15px;
+            margin-top: 10px; border-radius: 4px; cursor: pointer;
+            box-shadow: 2px 2px 0 #c71585; transition: all 0.1s ease;
+            user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+            -webkit-tap-highlight-color: transparent; 
         }
-
-            button:active, .touch-button:active {
-                transform: translate(2px, 2px);
-                box-shadow: none;
-            }
-
-            button:disabled {
-                background-color: #777;
-                border-color: #555;
-                color: #aaa;
-                cursor: not-allowed;
-                box-shadow: 2px 2px 0 #333;
-            }
-
-        .message-box {
-            background-color: rgba(0,0,0,0.85);
-            border: 2px solid #ff69b4;
-            padding: 15px;
-            border-radius: 8px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            text-align: center;
-            width: 85%;
-            max-width: 380px;
+        button:active, .touch-button:active { transform: translate(2px, 2px); box-shadow: none; }
+        button:disabled {
+            background-color: #777; border-color: #555; color: #aaa;
+            cursor: not-allowed; box-shadow: 2px 2px 0 #333;
         }
-
-        .game-over-active, .game-win-active {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            color: #FFFFFF;
-            display: flex !important;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-            z-index: 2000;
+        .message-box { 
+            background-color: rgba(0,0,0,0.85); border: 2px solid #ff69b4;
+            padding: 15px; border-radius: 8px; position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 1000; text-align: center; width: 85%; max-width: 380px;
         }
-
-        .game-over-active {
-            background-color: #000000;
+        .game-over-active, .game-win-active { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            color: #FFFFFF; display: flex !important; 
+            flex-direction: column; align-items: center; justify-content: center; 
+            padding: 20px; box-sizing: border-box; z-index: 2000; 
         }
+        .game-over-active { background-color: #000000; }
+        .game-win-active  { background-color: #224422; } 
 
-        .game-win-active {
-            background-color: #224422;
+        .game-over-active #gameOverTitle, .game-win-active #gameWinTitle,
+        #level2GameOverScreen #level2GameOverTitle, #level2WinScreen #level2WinTitle,
+        #level3GameOverScreen #level3GameOverTitle, #level3WinScreen #level3WinTitle { display: block; margin-bottom: 10px; } 
+        
+        .game-over-joan-image, .game-win-image { 
+            max-width: 70%; max-height: 50vh; object-fit: contain; margin-bottom: 20px;
+            border: 3px solid #ff1493; border-radius: 4px;
         }
-
-            .game-over-active #gameOverTitle, .game-win-active #gameWinTitle,
-            #level2GameOverScreen #level2GameOverTitle, #level2WinScreen #level2WinTitle,
-            #level3GameOverScreen #level3GameOverTitle, #level3WinScreen #level3WinTitle {
-                display: block;
-                margin-bottom: 10px;
-            }
-
-        .game-over-joan-image, .game-win-image {
-            max-width: 70%;
-            max-height: 50vh;
-            object-fit: contain;
-            margin-bottom: 20px;
-            border: 3px solid #ff1493;
-            border-radius: 4px;
+        .game-over-active p, .game-win-active p { 
+            color: #FFFFFF !important; font-size: 1em; 
+            text-shadow: 1px 1px 2px #000000; margin: 8px 0; 
         }
+        .game-over-active button, .game-win-active button { margin-top: 25px; }
 
-        .game-over-active p, .game-win-active p {
-            color: #FFFFFF !important;
-            font-size: 1em;
-            text-shadow: 1px 1px 2px #000000;
-            margin: 8px 0;
-        }
-
-        .game-over-active button, .game-win-active button {
-            margin-top: 25px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
+        .hidden { display: none !important; }
         .fury-bar-container {
-            width: 90%;
-            max-width: 200px;
-            height: 20px;
-            background-color: #555;
-            border: 2px solid #777;
-            border-radius: 4px;
-            margin: 5px auto;
-            overflow: hidden;
+            width: 90%; max-width: 200px; height: 20px; background-color: #555;
+            border: 2px solid #777; border-radius: 4px; margin: 5px auto; overflow: hidden;
         }
-
-        .fury-bar {
-            height: 100%;
-            width: 0%;
-            background-color: #ff0000;
-            transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out;
-        }
-
+        .fury-bar { height: 100%; width: 0%; background-color: #ff0000; transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out; }
         .joan-sprite {
-            width: 80px;
-            height: 120px;
-            margin: 5px auto;
-            border: 2px solid #504060;
-            background-color: #101010;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 80px; height: 120px; margin: 5px auto; border: 2px solid #504060;
+            background-color: #101010; overflow: hidden; display: flex; 
+            align-items: center; justify-content: center; 
         }
-
-            .joan-sprite img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+        .joan-sprite img { width: 100%; height: 100%; object-fit: cover; }
 
         .touch-controls {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            max-width: 320px;
-            margin-top: 10px;
-            padding: 5px;
-            position: relative;
-            z-index: 50;
+            display: flex; 
+            flex-direction: row; justify-content: space-around; align-items: center;
+            width: 100%; max-width: 320px; 
+            margin-top: 10px; padding: 5px; position: relative; z-index: 50; 
+        }
+        .touch-dpad { 
+            display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); 
+            gap: 8px; 
+            width: 130px; height: 130px; 
+        }
+        .touch-button { 
+            padding: 10px; 
+            font-size: 1.1em; 
+            display: flex; align-items: center; justify-content: center; margin: 0; 
+            min-width: 40px; min-height: 40px; 
+        }
+        .dpad-center { 
+            grid-column: 2; grid-row: 2; background-color: #403050 !important; 
+            box-shadow: none !important; border-color: #605070 !important;
+            pointer-events: none; 
+        }
+        #touchUp { grid-column: 2; grid-row: 1; } #touchLeft { grid-column: 1; grid-row: 2; }
+        #touchRight { grid-column: 3; grid-row: 2; } #touchDown { grid-column: 2; grid-row: 3; }
+        #touchAction { 
+            width: 90px; height: 90px; 
+            font-size: 0.9em; 
         }
 
-        .touch-dpad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 8px;
-            width: 130px;
-            height: 130px;
+        @media (max-width: 600px) { 
+            #mainTitleScreen h1 { font-size: 2em; }
+            #mainTitleScreen button { font-size: 1em; padding: 12px 25px; }
+            #levelTransitionScreen p { font-size: 2em; }
+            #levelTransitionScreen h2 { font-size: 1.5em; }
         }
-
-        .touch-button {
-            padding: 10px;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            min-width: 40px;
-            min-height: 40px;
-        }
-
-        .dpad-center {
-            grid-column: 2;
-            grid-row: 2;
-            background-color: #403050 !important;
-            box-shadow: none !important;
-            border-color: #605070 !important;
-            pointer-events: none;
-        }
-
-        #touchUp {
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        #touchLeft {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        #touchRight {
-            grid-column: 3;
-            grid-row: 2;
-        }
-
-        #touchDown {
-            grid-column: 2;
-            grid-row: 3;
-        }
-
-        #touchAction {
-            width: 90px;
-            height: 90px;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 600px) {
-            #mainTitleScreen h1 {
-                font-size: 2em;
-            }
-
-            #mainTitleScreen button {
-                font-size: 1em;
-                padding: 12px 25px;
-            }
-
-            #levelTransitionScreen p {
-                font-size: 2em;
-            }
-
-            #levelTransitionScreen h2 {
-                font-size: 1.5em;
-            }
-        }
-
         @media (max-width: 400px) {
-            .ui-element {
-                font-size: 0.7em;
-                padding: 5px 8px;
-            }
-
-            .message-box {
-                padding: 10px;
-                font-size: 0.85em;
-            }
-
-            .game-over-active p, .game-win-active p {
-                font-size: 0.9em;
-            }
-
-            .joan-sprite {
-                width: 60px;
-                height: 90px;
-            }
-
-            .fury-bar-container {
-                height: 15px;
-            }
-
-            .touch-dpad {
-                width: 110px;
-                height: 110px;
-                gap: 5px;
-            }
-
-            #touchAction {
-                width: 75px;
-                height: 75px;
-                font-size: 0.8em;
-            }
-
-            .touch-button {
-                font-size: 1em;
-                min-width: 35px;
-                min-height: 35px;
-            }
+            .ui-element { font-size: 0.7em; padding: 5px 8px; }
+            .message-box { padding: 10px; font-size: 0.85em; }
+            .game-over-active p, .game-win-active p { font-size: 0.9em; }
+            .joan-sprite { width: 60px; height: 90px; } 
+            .fury-bar-container { height: 15px; }
+            
+            .touch-dpad { width: 110px; height: 110px; gap: 5px;}
+            #touchAction { width: 75px; height: 75px; font-size: 0.8em;}
+            .touch-button { font-size: 1em; min-width: 35px; min-height: 35px;}
 
 
-            .game-over-joan-image, .game-win-image {
-                max-width: 90%;
-                max-height: 40vh;
-            }
+            .game-over-joan-image, .game-win-image { max-width: 90%; max-height: 40vh; }
         }
     </style>
 </head>
@@ -439,12 +229,12 @@
         <div id="mainTitleScreen">
             <h1>Mommie Dearest</h1>
             <button id="playFromTitleButton">Play Game</button>
-            <button id="chapterSelectButton" class="hidden">Chapter Select</button>
+            <button id="chapterSelectButton" class="hidden">Chapter Select</button> 
         </div>
 
         <div id="levelTransitionScreen" class="hidden">
             <p>Level 1</p>
-            <h2>No Wire Hangers!</h2>
+            <h2>No Wire Hangers!</h2> 
         </div>
 
         <div id="cutsceneScreen" class="hidden">
@@ -459,14 +249,14 @@
                 <div class="ui-element">Score: <span id="score">0</span></div>
                 <div class="ui-element">Fury: <span id="furyValue">0</span>/100</div>
             </div>
-
+            
             <div id="furyBarContainer" class="fury-bar-container">
                 <div id="furyBar" class="fury-bar"></div>
             </div>
 
             <div id="joanSpriteContainer" class="joan-sprite"></div>
             <canvas id="gameCanvas" width="400" height="300"></canvas>
-            <div id="touchControls" class="touch-controls hidden">
+            <div id="touchControls" class="touch-controls hidden"> 
                 <div class="touch-dpad">
                     <button class="touch-button" id="touchUp">▲</button>
                     <button class="touch-button" id="touchLeft">◀</button>
@@ -476,53 +266,51 @@
                 </div>
                 <button class="touch-button" id="touchAction">ACT</button>
             </div>
-
-            <div id="startScreen" class="message-box hidden">
+            
+            <div id="startScreen" class="message-box hidden"> 
                 <h3 class="text-md mb-1">Closet Calamity!</h3>
                 <p class="mb-2 text-xs sm:text-sm">Help Christina clean the closet! Move with <strong class="text-yellow-300">W/A/S/D</strong> or <strong class="text-yellow-300">ARROW KEYS</strong>. Press <strong class="text-yellow-300">SPACE</strong> or <strong class="text-yellow-300">ENTER</strong> (or <strong class="text-yellow-300">ACT</strong> button) near a hanger.</p>
                 <p class="text-xs sm:text-sm">Get <span class="text-gray-400">WIRE HANGERS</span>. Avoid <span class="text-orange-400">WOODEN</span> ones!</p>
                 <button id="startButton">Start Game</button>
             </div>
 
-            <div id="level2StartScreen" class="message-box hidden">
+            <div id="level2StartScreen" class="message-box hidden"> 
                 <h3 class="text-md mb-1">Bathroom Blitz!</h3>
                 <p class="mb-2 text-xs sm:text-sm">Oh no, the bathroom floor! Use <strong class="text-yellow-300">W/A/S/D</strong> or <strong class="text-yellow-300">ARROW KEYS</strong> to move Christina. Press <strong class="text-yellow-300">SPACE/ENTER</strong> (or <strong class="text-yellow-300">ACT</strong>) to scrub a dirty tile.</p>
                 <p class="text-xs sm:text-sm">Each dirty tile needs <strong class="text-orange-400">3 scrubs</strong>. Cleaning an already clean tile or getting hit by <strong class="text-green-400">Comet cans</strong> will anger Joan!</p>
                 <button id="startLevel2Button">Start Cleaning!</button>
             </div>
-
-            <div id="level3StartScreen" class="message-box hidden">
+            
+            <div id="level3StartScreen" class="message-box hidden"> 
                 <h3 class="text-md mb-1">Helga's Hasty Housekeeping!</h3>
                 <p class="mb-2 text-xs sm:text-sm">Joan's on the warpath! As Helga, clean the room before she catches you. Move with <strong class="text-yellow-300">A/D</strong> or <strong class="text-yellow-300">◀/▶</strong>. Press <strong class="text-yellow-300">SPACE/ENTER</strong> (or <strong class="text-yellow-300">ACT</strong>) to clean objects.</p>
                 <button id="startLevel3Button">Start Helga's Horror!</button>
             </div>
 
 
-            <div id="gameOverScreen" class="hidden">
-                <h3 id="gameOverTitle" class="text-md mb-1">GAME OVER</h3>
+            <div id="gameOverScreen" class="hidden"> <h3 id="gameOverTitle" class="text-md mb-1">GAME OVER</h3> 
                 <img id="largeJoanGameOver" class="game-over-joan-image" src="" alt="Game Over Joan">
                 <p id="gameOverMessageText" class="mb-2 text-xs sm:text-sm">Joan found the wire hangers!</p>
                 <p class="mb-1 text-xs sm:text-sm">Final Score: <span id="finalScoreText">0</span></p>
                 <button id="playAgainButton">Try Again?</button>
             </div>
 
-            <div id="gameWinScreen" class="hidden">
-                <h3 id="gameWinTitle" class="text-md mb-1">YOU WIN!</h3>
+            <div id="gameWinScreen" class="hidden"> <h3 id="gameWinTitle" class="text-md mb-1">YOU WIN!</h3> 
                 <img id="winScreenImage" class="game-win-image" src="" alt="Victory!"> <p id="gameWinMessageText">You cleaned the closet... for now.</p>
                 <p class="mb-1 text-xs sm:text-sm">Final Score: <span id="winFinalScoreText">0</span></p>
                 <button id="playAgainWinButton">Next Level</button>
             </div>
 
-            <div id="level2WinScreen" class="message-box hidden">
+            <div id="level2WinScreen" class="message-box hidden"> 
                 <h3 id="level2WinTitle" class="text-md mb-1">LEVEL 2 COMPLETE!</h3>
-                <img id="level2WinScreenImage" class="game-win-image" src="" alt="Victory!">
+                <img id="level2WinScreenImage" class="game-win-image" src="" alt="Victory!"> 
                 <p id="level2WinMessageText">You cleaned the bathroom like a pro!</p>
                 <p class="mb-1 text-xs sm:text-sm">Tiles Cleaned: <span id="level2WinFinalScoreText">0</span></p>
-                <button id="nextLevelButton">Next Level</button>
+                <button id="nextLevelButton">Next Level</button> 
                 <button id="mainMenuFromL2WinButton">Main Menu</button>
             </div>
 
-            <div id="level2GameOverScreen" class="message-box hidden">
+            <div id="level2GameOverScreen" class="message-box hidden"> 
                 <h3 id="level2GameOverTitle" class="text-md mb-1">LEVEL 2 - GAME OVER</h3>
                 <img id="level2LargeJoanGameOver" class="game-over-joan-image" src="" alt="Game Over Joan">
                 <p id="level2GameOverMessageText" class="mb-2 text-xs sm:text-sm">The bathroom remains a mess!</p>
@@ -531,14 +319,14 @@
                 <button id="mainMenuFromL2GameOverButton">Main Menu</button>
             </div>
 
-            <div id="level3WinScreen" class="message-box hidden">
+            <div id="level3WinScreen" class="message-box hidden"> 
                 <h3 id="level3WinTitle" class="text-md mb-1">LEVEL 3 COMPLETE!</h3>
-                <img id="level3WinScreenImage" class="game-win-image" src="" alt="Victory!">
+                <img id="level3WinScreenImage" class="game-win-image" src="" alt="Victory!"> 
                 <p id="level3WinMessageText">You survived Helga's Horror... this time.</p>
                 <p class="mb-1 text-xs sm:text-sm">Objects Cleaned: <span id="level3WinFinalScoreText">0</span></p>
                 <button id="mainMenuFromL3WinButton">Main Menu</button>
             </div>
-            <div id="level3GameOverScreen" class="message-box hidden">
+            <div id="level3GameOverScreen" class="message-box hidden"> 
                 <h3 id="level3GameOverTitle" class="text-md mb-1">LEVEL 3 - CAUGHT!</h3>
                 <img id="level3LargeJoanGameOver" class="game-over-joan-image" src="" alt="Game Over Joan">
                 <p id="level3GameOverMessageText" class="mb-2 text-xs sm:text-sm">Joan caught you!</p>
@@ -557,43 +345,43 @@
         const levelTransitionScreen = document.getElementById('levelTransitionScreen');
         const cutsceneScreen = document.getElementById('cutsceneScreen');
         const cutsceneCanvas = document.getElementById('cutsceneCanvas');
-        const csCtx = cutsceneCanvas.getContext('2d');
-        const gameContainer = document.getElementById('gameContainer');
-
+        const csCtx = cutsceneCanvas.getContext('2d'); 
+        const gameContainer = document.getElementById('gameContainer'); 
+        
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreDisplay = document.getElementById('score');
         const furyDisplay = document.getElementById('furyValue');
         const furyBar = document.getElementById('furyBar');
-        const startScreen = document.getElementById('startScreen');
-        const level2StartScreen = document.getElementById('level2StartScreen');
+        const startScreen = document.getElementById('startScreen'); 
+        const level2StartScreen = document.getElementById('level2StartScreen'); 
         const level3StartScreen = document.getElementById('level3StartScreen');
-        const gameOverScreen = document.getElementById('gameOverScreen');
-        const gameWinScreen = document.getElementById('gameWinScreen');
+        const gameOverScreen = document.getElementById('gameOverScreen'); 
+        const gameWinScreen = document.getElementById('gameWinScreen');   
         const level2WinScreen = document.getElementById('level2WinScreen');
         const level2GameOverScreen = document.getElementById('level2GameOverScreen');
         const level3WinScreen = document.getElementById('level3WinScreen');
         const level3GameOverScreen = document.getElementById('level3GameOverScreen');
-
+        
         const playFromTitleButton = document.getElementById('playFromTitleButton');
         const chapterSelectButton = document.getElementById('chapterSelectButton');
-        const startButton = document.getElementById('startButton');
-        const startLevel2Button = document.getElementById('startLevel2Button');
+        const startButton = document.getElementById('startButton'); 
+        const startLevel2Button = document.getElementById('startLevel2Button'); 
         const startLevel3Button = document.getElementById('startLevel3Button');
-        const playAgainButton = document.getElementById('playAgainButton');
-        const playAgainWinButton = document.getElementById('playAgainWinButton');
+        const playAgainButton = document.getElementById('playAgainButton'); 
+        const playAgainWinButton = document.getElementById('playAgainWinButton'); 
 
-        const largeJoanGameOverImg = document.getElementById('largeJoanGameOver');
-        const gameOverMessageTextElem = document.getElementById('gameOverMessageText');
-        const finalScoreTextElem = document.getElementById('finalScoreText');
-        const winScreenImageElem = document.getElementById('winScreenImage');
-        const gameWinMessageTextElem = document.getElementById('gameWinMessageText');
-        const winFinalScoreTextElem = document.getElementById('winFinalScoreText');
+        const largeJoanGameOverImg = document.getElementById('largeJoanGameOver'); 
+        const gameOverMessageTextElem = document.getElementById('gameOverMessageText'); 
+        const finalScoreTextElem = document.getElementById('finalScoreText'); 
+        const winScreenImageElem = document.getElementById('winScreenImage'); 
+        const gameWinMessageTextElem = document.getElementById('gameWinMessageText'); 
+        const winFinalScoreTextElem = document.getElementById('winFinalScoreText'); 
 
         const level2WinScreenImage = document.getElementById('level2WinScreenImage');
-        const level2WinMessageText = document.getElementById('level2WinMessageText');
+        const level2WinMessageText = document.getElementById('level2WinMessageText'); 
         const level2WinFinalScoreText = document.getElementById('level2WinFinalScoreText');
-        const nextLevelButton = document.getElementById('nextLevelButton');
+        const nextLevelButton = document.getElementById('nextLevelButton'); 
         const mainMenuFromL2WinButton = document.getElementById('mainMenuFromL2WinButton');
 
         const level2LargeJoanGameOver = document.getElementById('level2LargeJoanGameOver');
@@ -616,91 +404,91 @@
         const joanSpriteContainer = document.getElementById('joanSpriteContainer');
         const touchControlsContainer = document.getElementById('touchControls');
 
-        const mainGameTitleHeader = document.getElementById('mainGameTitle');
-        const subGameTitleHeader = document.getElementById('subGameTitle');
+        const mainGameTitleHeader = document.getElementById('mainGameTitle'); 
+        const subGameTitleHeader = document.getElementById('subGameTitle');   
         const inGameUI = document.getElementById('inGameUI');
         const furyBarContainer = document.getElementById('furyBarContainer');
 
         // --- Audio Elements ---
-        const soundGameOver = new Audio('https://www.soundboard.com/track/download/269370');
-        const soundGameStart = new Audio('https://www.soundboard.com/track/download/269387');
-        const soundFuryIncrease = new Audio('https://www.soundboard.com/track/download/269371');
-        const soundWoodenHanger = new Audio('https://www.soundboard.com/track/download/269372');
-        const soundCometLaunch = new Audio('https://www.soundboard.com/track/download/269377');
-        let soundCarouselMusic = null;
+        const soundGameOver = new Audio('https://www.soundboard.com/track/download/269370'); 
+        const soundGameStart = new Audio('https://www.soundboard.com/track/download/269387'); 
+        const soundFuryIncrease = new Audio('https://www.soundboard.com/track/download/269371'); 
+        const soundWoodenHanger = new Audio('https://www.soundboard.com/track/download/269372'); 
+        const soundCometLaunch = new Audio('https://www.soundboard.com/track/download/269377'); 
+        let soundCarouselMusic = null; 
         try {
-            soundCarouselMusic = new Audio('https://dl.sndup.net/f5ck3/d');
+            soundCarouselMusic = new Audio('https://dl.sndup.net/f5ck3/d'); 
         } catch (e) {
             console.error("Error initializing carousel music. This sound might not play.", e);
         }
         const soundPlanterApproach = new Audio('https://www.soundboard.com/track/download/1242930');
-
+        
         // --- Game Constants ---
         const MAX_FURY = 100;
-        const CHRISTINA_SPRITE_WIDTH = 24;
+        const CHRISTINA_SPRITE_WIDTH = 24; 
         const CHRISTINA_SPRITE_HEIGHT = 36;
         const CHRISTINA_SPEED = 3;
-        const INTERACTION_RADIUS = 12;
+        const INTERACTION_RADIUS = 12; 
 
         // Level 1 Constants
-        const WIN_SCORE = 30;
-        const HANGER_SPRITE_SCALE = 2;
-        const HANGER_WIDTH = 18 * HANGER_SPRITE_SCALE;
-        const HANGER_HEIGHT = 13 * HANGER_SPRITE_SCALE;
-        const WIRE_HANGER_COLOR = '#E0E0E0';
+        const WIN_SCORE = 30; 
+        const HANGER_SPRITE_SCALE = 2; 
+        const HANGER_WIDTH = 18 * HANGER_SPRITE_SCALE; 
+        const HANGER_HEIGHT = 13 * HANGER_SPRITE_SCALE; 
+        const WIRE_HANGER_COLOR = '#E0E0E0'; 
         const WIRE_HANGER_HIGHLIGHT_COLOR = '#FFFFFF';
-        const WOOD_HANGER_COLOR = '#8B4513';
-        const WOOD_HANGER_ACCENT_COLOR = '#A0522D';
-        const NUM_HANGERS = 6;
-        const FURY_INCREASE_INTERVAL = 2200;
-        const FURY_PER_INTERVAL = 2;
-        const FURY_PENALTY_WOOD = 20;
-        const FURY_REDUCTION_WIRE = 2;
-        const WIRE_HANGER_PROBABILITY = 0.60;
+        const WOOD_HANGER_COLOR = '#8B4513'; 
+        const WOOD_HANGER_ACCENT_COLOR = '#A0522D'; 
+        const NUM_HANGERS = 6; 
+        const FURY_INCREASE_INTERVAL = 2200; 
+        const FURY_PER_INTERVAL = 2; 
+        const FURY_PENALTY_WOOD = 20; 
+        const FURY_REDUCTION_WIRE = 2; 
+        const WIRE_HANGER_PROBABILITY = 0.60; 
 
         // Level 2 Constants
-        const MAX_LEVEL_2_HITS = 3;
-        const TILES_TO_WIN_LEVEL_2 = 20;
-        const BATH_TILE_SIZE = 40;
-        const BATH_TILE_COLOR_CLEAN = '#ADD8E6';
-        const BATH_TILE_COLOR_STAGE_1 = '#FFFFE0';
-        const BATH_TILE_COLOR_STAGE_2 = '#FFFFB2';
-        const BATH_TILE_COLOR_STAGE_3 = '#FFFF00';
+        const MAX_LEVEL_2_HITS = 3; 
+        const TILES_TO_WIN_LEVEL_2 = 30; 
+        const BATH_TILE_SIZE = 40; 
+        const BATH_TILE_COLOR_CLEAN = '#ADD8E6'; 
+        const BATH_TILE_COLOR_STAGE_1 = '#FFFFE0'; 
+        const BATH_TILE_COLOR_STAGE_2 = '#FFFFB2'; 
+        const BATH_TILE_COLOR_STAGE_3 = '#FFFF00'; 
         const BATH_TILE_OUTLINE_COLOR = '#FFFFFF';
-        const FURY_WRONG_TILE_PENALTY = 15;
-        const MAX_DIRTY_STAGE = 3;
-        const COMET_CAN_WIDTH = 8 * 2;
+        const FURY_WRONG_TILE_PENALTY = 15; 
+        const MAX_DIRTY_STAGE = 3; 
+        const COMET_CAN_WIDTH = 8 * 2; 
         const COMET_CAN_HEIGHT = 12 * 2;
-        const COMET_CAN_COLOR_MAIN = '#008000';
-        const COMET_CAN_COLOR_LABEL = '#FFFFFF';
-        const COMET_CAN_COLOR_TOP_BOTTOM = '#A9A9A9';
-        const COMET_SPEED = 1.5;
-        const MAX_COMETS = 5;
-        const DUST_PARTICLE_COUNT = 10;
+        const COMET_CAN_COLOR_MAIN = '#008000'; 
+        const COMET_CAN_COLOR_LABEL = '#FFFFFF'; 
+        const COMET_CAN_COLOR_TOP_BOTTOM = '#A9A9A9'; 
+        const COMET_SPEED = 1.5; 
+        const MAX_COMETS = 5; 
+        const DUST_PARTICLE_COUNT = 10; 
         const DUST_PARTICLE_MIN_SIZE = 2 * 2;
         const DUST_PARTICLE_MAX_SIZE = 5 * 2;
-        const DUST_PARTICLE_SPEED = 0.8 * 2;
-        const DUST_PARTICLE_LIFESPAN = 25;
-        const DUST_PARTICLE_COLOR = 'rgba(200, 200, 200, 0.7)';
+        const DUST_PARTICLE_SPEED = 0.8 * 2; 
+        const DUST_PARTICLE_LIFESPAN = 25; 
+        const DUST_PARTICLE_COLOR = 'rgba(200, 200, 200, 0.7)'; 
 
         // Level 3 Constants
         const HELGA_WIDTH = 20;
         const HELGA_HEIGHT = 40;
-        const HELGA_COLOR = '#8A2BE2';
+        const HELGA_COLOR = '#808080'; 
         const HELGA_SPEED = 2.5;
-        const JOAN_FOLLOWER_SPEED = 0.7;
-        const LEVEL3_ROOM_WIDTH = 1200;
-        const LEVEL3_OBJECT_CLEAN_SCORE = 5;
-        const LEVEL3_PLANTER_WIN_SCORE = 15;
+        const JOAN_FOLLOWER_SPEED = 0.7; 
+        const LEVEL3_ROOM_WIDTH = 1200; 
+        const LEVEL3_OBJECT_CLEAN_SCORE = 5; 
+        const LEVEL3_PLANTER_WIN_SCORE = 15; 
 
 
         // --- Game State Variables ---
-        let currentLevel = 1;
-        let score = 0;
+        let currentLevel = 1; 
+        let score = 0; 
         let fury = 0;
         let gameRunning = false;
         let gameIntervalId = null;
-        let furyIntervalId = null;
+        let furyIntervalId = null; 
         const keysPressed = {};
         let isTouchDevice = false;
         let furySoundPlayedThresholds = { forty: false, seventyFive: false };
@@ -708,58 +496,58 @@
 
         // Level 1 Specific State
         let hangers = [];
-
+        
         // Level 2 Specific State
-        let level2HitsTaken = 0;
-        let level2TilesCleaned = 0;
+        let level2HitsTaken = 0; 
+        let level2TilesCleaned = 0; 
         let comets = [];
-        let cometOriginSide = 'top';
+        let cometOriginSide = 'top'; 
         let dustClouds = [];
-        let bathroomTiles = [];
+        let bathroomTiles = []; 
 
         // Level 3 Specific State
         let cameraX = 0;
-        let helga = { x: 50, y: 0, width: HELGA_WIDTH, height: HELGA_HEIGHT, speed: HELGA_SPEED };
+        let helga = { x: 50, y: 0, width: HELGA_WIDTH, height: HELGA_HEIGHT, speed: HELGA_SPEED }; 
         let joanFollower = { x: -50, y: 0, width: CHRISTINA_SPRITE_WIDTH, height: CHRISTINA_SPRITE_HEIGHT, speed: JOAN_FOLLOWER_SPEED };
         let level3Objects = [];
         let planterObject = null;
         let approachingPlanterSoundPlayed = false;
-        let level3Score = 0;
+        let level3Score = 0; 
 
         // Player object (references either Christina or Helga based on level)
         let christina = { x: 50, y: 0, width: CHRISTINA_SPRITE_WIDTH, height: CHRISTINA_SPRITE_HEIGHT, speed: CHRISTINA_SPEED }; // Initialize christina object
-        let player = christina; // Default to Christina
+        let player = christina; // Default to Christina 
 
         // Joan's Portrait
-        const joanImageURLs = {
+        const joanImageURLs = { 
             low: 'https://m.media-amazon.com/images/M/MV5BNjA2ZWI1ZTYtYTVlZS00OTZiLTkzZTItNGI0YTc5YjQ4MWQ4XkEyXkFqcGc@._V1_.jpg',
             medium: 'https://www.cinematicrandomness.com/wp-content/uploads/2021/04/mommiedear001-1024x576.jpg',
             high: 'https://m.media-amazon.com/images/M/MV5BNzBiNWQzN2QtMTY3Mi00ZTExLTg4MmYtOTcyZTEwY2Q0YTVmXkEyXkFqcGc@._V1_FMjpg_UX1920_.jpg',
             gameOver: 'https://m.media-amazon.com/images/M/MV5BYmNiMDgwZTYtZDdkOC00MDRlLWI0MDItNjVlMjkzMjViNDYzXkEyXkFqcGc@._V1_FMjpg_UX625_.jpg',
-            win: 'https://m.media-amazon.com/images/M/MV5BNjA2ZWI1ZTYtYTVlZS00OTZiLTkzZTItNGI0YTc5YjQ4MWQ4XkEyXkFqcGc@._V1_.jpg'
+            win: 'https://m.media-amazon.com/images/M/MV5BNjA2ZWI1ZTYtYTVlZS00OTZiLTkzZTItNGI0YTc5YjQ4MWQ4XkEyXkFqcGc@._V1_.jpg' 
         };
-        let currentJoanImageInGame = null;
+        let currentJoanImageInGame = null; 
 
         // --- Cutscene Variables ---
         let cutsceneActive = false;
         let cutsceneFrame = 0;
         // Approx 60fps * 21s = 1260 frames for the audio clip
-        const CUTSCENE_TOTAL_DURATION_FRAMES = 1260;
+        const CUTSCENE_TOTAL_DURATION_FRAMES = 1260; 
         const CUTSCENE_JOAN_SPEAKS_START_FRAME = 60; // Start Joan's dialogue after 1 second
         const CUTSCENE_JOAN_SPEAKS_DURATION = 300;   // Joan speaks for 5 seconds
         const CUTSCENE_PAUSE_1_DURATION = 30;      // Pause for 0.5 seconds
         const CUTSCENE_CHRISTINA_SPEAKS_DURATION = 480; // Christina speaks for 8 seconds
         const CUTSCENE_END_PAUSE_DURATION = CUTSCENE_TOTAL_DURATION_FRAMES - (CUTSCENE_JOAN_SPEAKS_START_FRAME + CUTSCENE_JOAN_SPEAKS_DURATION + CUTSCENE_PAUSE_1_DURATION + CUTSCENE_CHRISTINA_SPEAKS_DURATION);
 
-        let csChristina = { x: 0, y: 0, targetX: 0, state: 'walking', bobOffset: 0 };
-        let csJoan = { x: 0, y: 0, state: 'neutral', bobOffset: 0 };
-        let cutsceneDialogueStage = 0;
-        let cutsceneStageStartFrame = 0; // <-- NEW: track when each stage starts
+        
+        let csChristina = { x: 0, y: 0, targetX: 0, state: 'walking', bobOffset: 0 }; 
+        let csJoan = { x: 0, y: 0, state: 'neutral', bobOffset: 0 }; 
+        let cutsceneDialogueStage = 0; 
         let cutsceneAnimationId = null;
         let carouselRotation = 0;
 
 
-        function playSound(audioElement, loop = false) {
+        function playSound(audioElement, loop = false) { 
             if (!audioElement) {
                 console.error("playSound called with null or undefined audioElement");
                 return;
@@ -780,7 +568,7 @@
             }
         }
         function stopSound(audioElement) {
-            if (audioElement && typeof audioElement.pause === 'function') {
+            if (audioElement && typeof audioElement.pause === 'function') { 
                 audioElement.pause();
                 audioElement.currentTime = 0;
                 audioElement.loop = false;
@@ -788,8 +576,8 @@
         }
 
         function detectTouchDevice() { isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)); }
-
-        function createHanger(x, y, forceWire = false) {
+        
+        function createHanger(x, y, forceWire = false) { 
             const type = forceWire ? 'wire' : (Math.random() < WIRE_HANGER_PROBABILITY ? 'wire' : 'wood');
             return { x, y, type, width: HANGER_WIDTH, height: HANGER_HEIGHT, collected: false };
         }
@@ -805,35 +593,35 @@
             }
         }
 
-        function initHangers() {
+        function initHangers() { 
             hangers = [];
-            const safeMargin = 20;
+            const safeMargin = 20; 
             for (let i = 0; i < NUM_HANGERS; i++) {
                 let newHanger; let attempts = 0; let placedWithoutOverlap;
                 do {
                     placedWithoutOverlap = true;
-                    newHanger = createHanger(
-                        Math.random() * (canvas.width - HANGER_WIDTH - 2 * safeMargin) + safeMargin,
-                        Math.random() * (canvas.height - HANGER_HEIGHT - 2 * safeMargin) + safeMargin
+                    newHanger = createHanger( 
+                        Math.random() * (canvas.width - HANGER_WIDTH - 2 * safeMargin) + safeMargin, 
+                        Math.random() * (canvas.height - HANGER_HEIGHT - 2 * safeMargin) + safeMargin 
                     );
-                    if (isOverlapping(newHanger, player, 30)) { placedWithoutOverlap = false; continue; }
+                    if (isOverlapping(newHanger, player, 30)) { placedWithoutOverlap = false; continue; } 
                     for (let j = 0; j < hangers.length; j++) {
                         if (isOverlapping(newHanger, hangers[j])) { placedWithoutOverlap = false; break; }
                     }
                     attempts++;
-                } while (!placedWithoutOverlap && attempts < 50);
+                } while (!placedWithoutOverlap && attempts < 50); 
                 if(placedWithoutOverlap) hangers.push(newHanger);
                 else console.warn("Could not place a hanger without overlap in initHangers.");
             }
-            ensureAtLeastOneWireHanger();
+            ensureAtLeastOneWireHanger(); 
         }
-        function isOverlapping(obj1, obj2, buffer = 5) {
+        function isOverlapping(obj1, obj2, buffer = 5) { 
             return obj1.x < obj2.x + obj2.width + buffer &&
                    obj1.x + obj1.width + buffer > obj2.x &&
                    obj1.y < obj2.y + obj2.height + buffer &&
                    obj1.y + obj1.height + buffer > obj2.y;
         }
-        function drawClosetBackground() {
+        function drawClosetBackground() { 
             ctx.fillStyle = '#4a2e1a'; ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.strokeStyle = '#3b2414'; ctx.lineWidth = 2;
             for (let i = 0; i < canvas.height; i += 10) { ctx.beginPath(); ctx.moveTo(0, i + Math.random() * 5 - 2.5); ctx.lineTo(canvas.width, i + Math.random() * 5 - 2.5); ctx.stroke(); }
@@ -844,29 +632,29 @@
 
         function drawHanger(hanger) {
             if (hanger.collected) return;
-            ctx.imageSmoothingEnabled = false;
-            const s = HANGER_SPRITE_SCALE;
+            ctx.imageSmoothingEnabled = false; 
+            const s = HANGER_SPRITE_SCALE; 
             const x = hanger.x;
             const y = hanger.y;
 
             if (hanger.type === 'wood') {
                 ctx.fillStyle = WOOD_HANGER_COLOR;
-                ctx.fillRect(x + s*7, y, s*4, s*3);
-                ctx.fillRect(x + s*6, y + s*1, s*1, s*1);
-                ctx.fillRect(x + s*5, y + s*2, s*1, s*1);
+                ctx.fillRect(x + s*7, y, s*4, s*3); 
+                ctx.fillRect(x + s*6, y + s*1, s*1, s*1); 
+                ctx.fillRect(x + s*5, y + s*2, s*1, s*1); 
                 ctx.fillRect(x + s*11, y + s*1, s*1, s*1);
                 ctx.fillRect(x + s*12, y + s*2, s*1, s*1);
                 ctx.fillRect(x, y + s*3, s*18, s*3);
                 ctx.fillRect(x + s*1, y + s*6, s*16, s*2);
                 ctx.fillRect(x + s*2, y + s*8, s*14, s*2);
-                ctx.fillRect(x + s*3, y + s*10, s*12, s*2);
+                ctx.fillRect(x + s*3, y + s*10, s*12, s*2); 
                 ctx.fillStyle = WOOD_HANGER_ACCENT_COLOR;
-                ctx.fillRect(x + s*1, y + s*4, s*16, s*1);
-                ctx.fillRect(x + s*4, y + s*10, s*10, s*1);
-            } else {
+                ctx.fillRect(x + s*1, y + s*4, s*16, s*1); 
+                ctx.fillRect(x + s*4, y + s*10, s*10, s*1); 
+            } else { 
                 ctx.fillStyle = WIRE_HANGER_COLOR;
-                const hookCenterX = x + s*9;
-                ctx.fillRect(hookCenterX - s*1, y, s*2, s*5);
+                const hookCenterX = x + s*9; 
+                ctx.fillRect(hookCenterX - s*1, y, s*2, s*5); 
                 ctx.fillRect(hookCenterX - s*2, y + s*1, s*1, s*2);
                 ctx.fillRect(hookCenterX - s*3, y + s*2, s*1, s*1);
                 ctx.fillRect(hookCenterX + s*1, y + s*1, s*1, s*2);
@@ -880,94 +668,92 @@
                 ctx.fillRect(x + s*10, shoulderY + s*2, s*7, s*1);
                 ctx.fillRect(x + s*11, shoulderY + s*1, s*5, s*1);
                 ctx.fillRect(x + s*12, shoulderY, s*3, s*1);
-                ctx.fillRect(x, y + s*10, s*18, s*1);
+                ctx.fillRect(x, y + s*10, s*18, s*1); 
                 ctx.fillStyle = WIRE_HANGER_HIGHLIGHT_COLOR;
-                ctx.fillRect(hookCenterX - s*1, y + s*1, s*1, s*1);
+                ctx.fillRect(hookCenterX - s*1, y + s*1, s*1, s*1); 
             }
         }
-
-        function drawPlayerSprite() {
+        
+        function drawPlayerSprite() { 
             const currentPlayer = (currentLevel === 3) ? helga : christina;
-            const p = 2;
-            const baseX = currentPlayer.x - (currentPlayer.width / 2) - (currentLevel === 3 ? cameraX : 0);
-            const baseY = currentPlayer.y - currentPlayer.height;
-
-            ctx.imageSmoothingEnabled = false;
-
-            if (currentLevel === 3) {
-                ctx.fillStyle = HELGA_COLOR;
+            const p = 2; 
+            const baseX = currentPlayer.x - (currentPlayer.width / 2) - (currentLevel === 3 ? cameraX : 0); 
+            const baseY = currentPlayer.y - currentPlayer.height;    
+            
+            ctx.imageSmoothingEnabled = false; 
+            
+            if (currentLevel === 3) { 
+                ctx.fillStyle = HELGA_COLOR; 
                 ctx.fillRect(baseX, baseY, currentPlayer.width, currentPlayer.height);
-                ctx.fillStyle = '#FFDBAC'; // A light skin/apron color
-                ctx.fillRect(baseX + currentPlayer.width * 0.25, baseY + currentPlayer.height * 0.1, currentPlayer.width * 0.5, currentPlayer.height * 0.25);
-                ctx.fillStyle = '#FFE4C4';
+                ctx.fillStyle = '#FFE4C4'; 
                 ctx.fillRect(baseX + currentPlayer.width * 0.25, baseY - currentPlayer.height * 0.2, currentPlayer.width * 0.5, currentPlayer.height * 0.2);
-                ctx.fillStyle = '#A9A9A9';
+                ctx.fillStyle = '#A9A9A9'; 
                 ctx.fillRect(baseX + currentPlayer.width * 0.3, baseY - currentPlayer.height * 0.3, currentPlayer.width * 0.4, currentPlayer.height * 0.1);
 
-            } else {
+            } else { 
                 ctx.fillStyle = '#FFFFFF';
-                ctx.fillRect(baseX + p*3, baseY, p*6, p*2); ctx.fillRect(baseX + p*2, baseY + p*2, p*8, p*1);
+                ctx.fillRect(baseX + p*3, baseY, p*6, p*2); ctx.fillRect(baseX + p*2, baseY + p*2, p*8, p*1); 
                 ctx.fillRect(baseX + p*1, baseY + p*3, p*10, p*2); ctx.fillRect(baseX, baseY + p*4, p*12, p*1);
                 ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*1, baseY + p*3, p*10, p*1);
-                ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*8, baseY + p*1, p*2, p*1);
-                ctx.fillRect(baseX + p*9, baseY + p*2, p*1, p*2); ctx.fillRect(baseX + p*7, baseY + p*2, p*1, p*2);
-                ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*8, baseY + p*2, p*1, p*1);
-                ctx.fillStyle = '#FEFDE2'; ctx.fillRect(baseX + p*1, baseY + p*5, p*2, p*3);
+                ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*8, baseY + p*1, p*2, p*1); 
+                ctx.fillRect(baseX + p*9, baseY + p*2, p*1, p*2); ctx.fillRect(baseX + p*7, baseY + p*2, p*1, p*2); 
+                ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*8, baseY + p*2, p*1, p*1); 
+                ctx.fillStyle = '#FEFDE2'; ctx.fillRect(baseX + p*1, baseY + p*5, p*2, p*3); 
                 ctx.fillRect(baseX + p*9, baseY + p*5, p*2, p*3); ctx.fillRect(baseX + p*3, baseY + p*7, p*6, p*1);
                 ctx.fillRect(baseX + p*2, baseY + p*6, p*1, p*1); ctx.fillRect(baseX + p*9, baseY + p*6, p*1, p*1);
-                ctx.fillStyle = '#FFDBAC'; ctx.fillRect(baseX + p*3, baseY + p*5, p*6, p*3);
-                ctx.fillRect(baseX + p*4, baseY + p*8, p*4, p*1);
-                ctx.fillStyle = '#00AEFF'; ctx.fillRect(baseX + p*4, baseY + p*6, p*1, p*1);
-                ctx.fillRect(baseX + p*7, baseY + p*6, p*1, p*1);
-                ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*3, baseY + p*9, p*6, p*3);
-                ctx.fillRect(baseX + p*1, baseY + p*9, p*2, p*2); ctx.fillRect(baseX + p*9, baseY + p*9, p*2, p*2);
+                ctx.fillStyle = '#FFDBAC'; ctx.fillRect(baseX + p*3, baseY + p*5, p*6, p*3); 
+                ctx.fillRect(baseX + p*4, baseY + p*8, p*4, p*1); 
+                ctx.fillStyle = '#00AEFF'; ctx.fillRect(baseX + p*4, baseY + p*6, p*1, p*1); 
+                ctx.fillRect(baseX + p*7, baseY + p*6, p*1, p*1); 
+                ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*3, baseY + p*9, p*6, p*3); 
+                ctx.fillRect(baseX + p*1, baseY + p*9, p*2, p*2); ctx.fillRect(baseX + p*9, baseY + p*9, p*2, p*2); 
                 ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*1, baseY + p*11, p*2, p*1);
                 ctx.fillRect(baseX + p*9, baseY + p*11, p*2, p*1);
-                ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*2, baseY + p*12, p*8, p*1);
-                ctx.fillRect(baseX + p*1, baseY + p*13, p*10, p*2); ctx.fillRect(baseX + p*0, baseY + p*15, p*12, p*1);
+                ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*2, baseY + p*12, p*8, p*1); 
+                ctx.fillRect(baseX + p*1, baseY + p*13, p*10, p*2); ctx.fillRect(baseX + p*0, baseY + p*15, p*12, p*1); 
                 ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*0, baseY + p*16, p*12, p*1);
-                ctx.fillStyle = '#FFDBAC'; ctx.fillRect(baseX + p*1, baseY + p*11, p*2, p*2);
-                ctx.fillRect(baseX + p*9, baseY + p*11, p*2, p*2); ctx.fillRect(baseX + p*3, baseY + p*17, p*2, p*1);
-                ctx.fillRect(baseX + p*7, baseY + p*17, p*2, p*1);
+                ctx.fillStyle = '#FFDBAC'; ctx.fillRect(baseX + p*1, baseY + p*11, p*2, p*2); 
+                ctx.fillRect(baseX + p*9, baseY + p*11, p*2, p*2); ctx.fillRect(baseX + p*3, baseY + p*17, p*2, p*1); 
+                ctx.fillRect(baseX + p*7, baseY + p*17, p*2, p*1); 
             }
         }
 
 
-        function drawJoanSpriteInGame() {
+        function drawJoanSpriteInGame() { 
             let imageUrlToLoad;
             if (fury >= 75) imageUrlToLoad = joanImageURLs.high;
             else if (fury >= 40) imageUrlToLoad = joanImageURLs.medium;
             else imageUrlToLoad = joanImageURLs.low;
             if (!currentJoanImageInGame || (currentJoanImageInGame && currentJoanImageInGame.src !== imageUrlToLoad)) {
                 joanSpriteContainer.innerHTML = ''; currentJoanImageInGame = document.createElement('img');
-                currentJoanImageInGame.src = imageUrlToLoad; currentJoanImageInGame.alt = "Joan Crawford";
+                currentJoanImageInGame.src = imageUrlToLoad; currentJoanImageInGame.alt = "Joan Crawford"; 
                 currentJoanImageInGame.onerror = function() {
                     joanSpriteContainer.innerHTML = '<p style="color: #ff69b4; font-size: 0.7em; padding: 5px;">Joan Error!</p>';
-                    console.error("Error loading Joan's in-game image: " + imageUrlToLoad); currentJoanImageInGame = null;
+                    console.error("Error loading Joan's in-game image: " + imageUrlToLoad); currentJoanImageInGame = null; 
                 };
                 joanSpriteContainer.appendChild(currentJoanImageInGame);
             }
         }
-        function updateUI() {
+        function updateUI() { 
             if (currentLevel === 1) {
-                scoreDisplay.textContent = score;
+                scoreDisplay.textContent = score; 
             } else if (currentLevel === 2) {
-                scoreDisplay.textContent = level2TilesCleaned;
+                scoreDisplay.textContent = level2TilesCleaned; 
             } else if (currentLevel === 3) {
-                scoreDisplay.textContent = level3Score;
+                scoreDisplay.textContent = level3Score; 
             }
             furyDisplay.textContent = `${fury}/${MAX_FURY}`;
             furyBar.style.width = `${(fury / MAX_FURY) * 100}%`;
             if (fury >= MAX_FURY * 0.75) furyBar.style.backgroundColor = '#ff0000';
             else if (fury >= MAX_FURY * 0.4) furyBar.style.backgroundColor = '#ffa500';
             else furyBar.style.backgroundColor = '#ffff00';
-            if(gameRunning) drawJoanSpriteInGame();
+            if(gameRunning) drawJoanSpriteInGame(); 
         }
-        function increaseFury() {
-            if (!gameRunning || currentLevel !== 1) return;
+        function increaseFury() {  
+            if (!gameRunning || currentLevel !== 1) return; 
             const oldFury = fury;
             fury = Math.min(fury + FURY_PER_INTERVAL, MAX_FURY);
-            if (fury >= 40 && oldFury < 40 && !furySoundPlayedThresholds.forty) { playSound(soundFuryIncrease); furySoundPlayedThresholds.forty = true; }
+            if (fury >= 40 && oldFury < 40 && !furySoundPlayedThresholds.forty) { playSound(soundFuryIncrease); furySoundPlayedThresholds.forty = true; } 
             else if (fury >= 75 && oldFury < 75 && !furySoundPlayedThresholds.seventyFive) { playSound(soundFuryIncrease); furySoundPlayedThresholds.seventyFive = true; }
             updateUI(); if (fury >= MAX_FURY) triggerGameOver("Joan's fury has boiled over!");
         }
@@ -975,27 +761,27 @@
             let dx = 0; dy = 0;
             const currentPlayerObject = (currentLevel === 3) ? helga : christina;
             const currentSpeed = currentPlayerObject.speed;
-
-            if (keysPressed['w'] || keysPressed['arrowup']) dy -= currentSpeed;
-            if (keysPressed['s'] || keysPressed['arrowdown']) dy += currentSpeed;
-            if (keysPressed['a'] || keysPressed['arrowleft']) dx -= currentSpeed;
-            if (keysPressed['d'] || keysPressed['arrowright']) dx += currentSpeed;
-
-            currentPlayerObject.x += dx;
-
-            if (currentLevel !== 3) {
+            
+            if (keysPressed['w'] || keysPressed['ArrowUp']) dy -= currentSpeed; 
+            if (keysPressed['s'] || keysPressed['ArrowDown']) dy += currentSpeed;
+            if (keysPressed['a'] || keysPressed['ArrowLeft']) dx -= currentSpeed; 
+            if (keysPressed['d'] || keysPressed['ArrowRight']) dx += currentSpeed;
+            
+            currentPlayerObject.x += dx; 
+            
+            if (currentLevel !== 3) { 
                  currentPlayerObject.y += dy;
             }
 
-            const halfWidth = currentPlayerObject.width / 2;
+            const halfWidth = currentPlayerObject.width / 2; 
             const halfHeight = currentPlayerObject.height / 2;
 
             if (currentLevel === 1) {
                  currentPlayerObject.x = Math.max(halfWidth, Math.min(canvas.width - halfWidth, currentPlayerObject.x));
-                 currentPlayerObject.y = Math.max(CHRISTINA_SPRITE_HEIGHT, Math.min(canvas.height - CHRISTINA_SPRITE_HEIGHT / 6, currentPlayerObject.y));
+                 currentPlayerObject.y = Math.max(CHRISTINA_SPRITE_HEIGHT, Math.min(canvas.height - CHRISTINA_SPRITE_HEIGHT / 6, currentPlayerObject.y)); 
             } else if (currentLevel === 2) {
                  currentPlayerObject.x = Math.max(halfWidth, Math.min(canvas.width - halfWidth, currentPlayerObject.x));
-                 currentPlayerObject.y = Math.max(halfHeight, Math.min(canvas.height - halfHeight, currentPlayerObject.y));
+                 currentPlayerObject.y = Math.max(halfHeight, Math.min(canvas.height - halfHeight, currentPlayerObject.y)); 
             } else if (currentLevel === 3) {
                 currentPlayerObject.x = Math.max(halfWidth, Math.min(LEVEL3_ROOM_WIDTH - halfWidth, currentPlayerObject.x));
                 cameraX = currentPlayerObject.x - canvas.width / 2;
@@ -1004,7 +790,7 @@
             }
         }
 
-        function attemptInteraction() {
+        function attemptInteraction() { 
             if (!gameRunning) return;
             const currentPlayer = (currentLevel === 3) ? helga : christina;
 
@@ -1012,20 +798,20 @@
                 for (let i = hangers.length - 1; i >= 0; i--) {
                     const h = hangers[i];
                     if (h.collected) continue;
-                    const christinaCenterX = player.x;
-                    const christinaCenterY = player.y - player.height / 2;
+                    const christinaCenterX = player.x; 
+                    const christinaCenterY = player.y - player.height / 2; 
                     const hangerCenterX = h.x + h.width / 2;
                     const hangerCenterY = h.y + h.height / 2;
                     const dist = Math.sqrt(Math.pow(christinaCenterX - hangerCenterX, 2) + Math.pow(christinaCenterY - hangerCenterY, 2));
 
-                    if (dist < (h.width / 2 + player.width / 2 + INTERACTION_RADIUS)) {
+                    if (dist < (h.width / 2 + player.width / 2 + INTERACTION_RADIUS)) { 
                         h.collected = true;
                         if (h.type === 'wire') {
                             score++;
                             fury = Math.max(0, fury - FURY_REDUCTION_WIRE);
                             if (score >= WIN_SCORE) {
-                                triggerGameWin();
-                                return;
+                                triggerGameWin(); 
+                                return; 
                             }
                         } else {
                             fury = Math.min(fury + FURY_PENALTY_WOOD, MAX_FURY);
@@ -1040,8 +826,8 @@
                                 Math.random() * (canvas.width - HANGER_WIDTH - 2 * safeMargin) + safeMargin,
                                 Math.random() * (canvas.height - HANGER_HEIGHT - 2 * safeMargin) + safeMargin
                             );
-                            if (isOverlapping(replacementHanger, player, 30)) {
-                                placedWithoutOverlap = false; continue;
+                            if (isOverlapping(replacementHanger, player, 30)) { 
+                                placedWithoutOverlap = false; continue; 
                             }
                             for (const existingHanger of hangers) {
                                 if (existingHanger !== h && !existingHanger.collected && isOverlapping(replacementHanger, existingHanger)) {
@@ -1070,7 +856,7 @@
                 const centerTileRow = Math.floor(player.y / BATH_TILE_SIZE);
                 let interactedWithDirtyTile = false;
                 let tileCleanedThisAction = false;
-                let cleanedTileRow = -1;
+                let cleanedTileRow = -1; 
 
                 for (let rOffset = -1; rOffset <= 1; rOffset++) {
                     for (let cOffset = -1; cOffset <= 1; cOffset++) {
@@ -1087,14 +873,14 @@
                                     tile.color = BATH_TILE_COLOR_CLEAN;
                                     level2TilesCleaned++;
                                     tileCleanedThisAction = true;
-                                    cleanedTileRow = tileRow;
-
-                                    if (cleanedTileRow < bathroomTiles.length / 2) {
+                                    cleanedTileRow = tileRow; 
+                                    
+                                    if (cleanedTileRow < bathroomTiles.length / 2) { 
                                         cometOriginSide = 'bottom';
-                                    } else {
+                                    } else { 
                                         cometOriginSide = 'top';
                                     }
-                                    spawnComet(false);
+                                    spawnComet(false); 
 
 
                                     if (level2TilesCleaned >= TILES_TO_WIN_LEVEL_2) {
@@ -1104,63 +890,63 @@
                                     makeRandomTileMessy();
                                 }
                                 interactedWithDirtyTile = true;
-                                break;
+                                break; 
                             }
                         }
                     }
                     if (interactedWithDirtyTile) break;
                 }
 
-                if (!interactedWithDirtyTile) {
+                if (!interactedWithDirtyTile) { 
                     fury = Math.min(fury + FURY_WRONG_TILE_PENALTY, MAX_FURY);
-                    spawnComet(true);
+                    spawnComet(true); 
                     if (fury >= MAX_FURY) {
                         triggerGameOver("Joan's fury boiled over from your sloppy cleaning!");
                         return;
                     }
                 }
-                updateUI();
+                updateUI(); 
             } else if (currentLevel === 3) {
                 let interacted = false;
                 for (let i = 0; i < level3Objects.length; i++) {
                     const obj = level3Objects[i];
-                    const helgaCanvasX = helga.x - cameraX;
+                    const helgaCanvasX = helga.x - cameraX; 
 
-                    if (Math.abs(helgaCanvasX - (obj.x - cameraX + obj.width / 2)) < obj.width / 1.5 &&
+                    if (Math.abs(helgaCanvasX - (obj.x - cameraX + obj.width / 2)) < obj.width / 1.5 && 
                         Math.abs(helga.y - (obj.y + obj.height / 2)) < obj.height / 1.5) {
-
+                        
                         if (obj.isPlanter) {
                             if (!obj.moved) {
                                 if (helgaCanvasX < (obj.x - cameraX) + obj.width * 0.25 || helgaCanvasX > (obj.x - cameraX) + obj.width * 0.75) {
-                                    obj.x += (helgaCanvasX < (obj.x - cameraX) + obj.width / 2 ? -BATH_TILE_SIZE : BATH_TILE_SIZE);
+                                    obj.x += (helgaCanvasX < (obj.x - cameraX) + obj.width / 2 ? -BATH_TILE_SIZE : BATH_TILE_SIZE); 
                                     obj.moved = true;
-                                    playSound(soundPlanterApproach);
+                                    playSound(soundPlanterApproach); 
                                     interacted = true;
-                                } else {
+                                } else { 
                                     triggerLevel3GameOver("Don't touch that planter head-on!");
                                     return;
                                 }
                             } else if (obj.moved && !obj.floorCleaned) {
                                 if (Math.abs(helga.x - (obj.originalX + obj.width / 2)) < BATH_TILE_SIZE / 2) {
                                     obj.floorCleaned = true;
-                                    obj.cleanedVisual = true;
+                                    obj.cleanedVisual = true; 
                                     level3Score += LEVEL3_PLANTER_WIN_SCORE;
                                     triggerLevel3Win();
                                     return;
                                 }
                             }
-                        } else if (!obj.isClean) {
+                        } else if (!obj.isClean) { 
                             obj.isClean = true;
                             level3Score += LEVEL3_OBJECT_CLEAN_SCORE;
                             interacted = true;
                         }
-                        if (interacted) break;
+                        if (interacted) break; 
                     }
                 }
                 updateUI();
             }
         }
-
+        
         function initBathroomGrid() {
             bathroomTiles = [];
             const numCols = Math.floor(canvas.width / BATH_TILE_SIZE);
@@ -1171,8 +957,8 @@
                     bathroomTiles[row][col] = {
                         x: col * BATH_TILE_SIZE,
                         y: row * BATH_TILE_SIZE,
-                        dirtyStage: 0,
-                        color: BATH_TILE_COLOR_CLEAN
+                        dirtyStage: 0, 
+                        color: BATH_TILE_COLOR_CLEAN 
                     };
                 }
             }
@@ -1194,7 +980,7 @@
             const cleanTiles = [];
             for (let row = 0; row < bathroomTiles.length; row++) {
                 for (let col = 0; col < bathroomTiles[row].length; col++) {
-                    if (bathroomTiles[row][col].dirtyStage === 0) {
+                    if (bathroomTiles[row][col].dirtyStage === 0) { 
                         cleanTiles.push(bathroomTiles[row][col]);
                     }
                 }
@@ -1203,24 +989,24 @@
             if (cleanTiles.length > 0) {
                 const randomIndex = Math.floor(Math.random() * cleanTiles.length);
                 const tileToMakeMessy = cleanTiles[randomIndex];
-                tileToMakeMessy.dirtyStage = MAX_DIRTY_STAGE;
-                tileToMakeMessy.color = BATH_TILE_COLOR_STAGE_3;
+                tileToMakeMessy.dirtyStage = MAX_DIRTY_STAGE; 
+                tileToMakeMessy.color = BATH_TILE_COLOR_STAGE_3; 
             }
         }
-
-        function redrawCanvas() {
-            if (!canvas.width || !canvas.height) return;
+        
+        function redrawCanvas() { 
+            if (!canvas.width || !canvas.height) return; 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (currentLevel === 1) {
-                drawClosetBackground();
-                hangers.forEach(drawHanger);
-                drawPlayerSprite();
+                drawClosetBackground(); 
+                hangers.forEach(drawHanger); 
+                drawPlayerSprite(); 
             } else if (currentLevel === 2) {
                 drawBathroom();
-                drawPlayerSprite();
-                drawComets();
-                drawDustClouds();
+                drawPlayerSprite(); 
+                drawComets(); 
+                drawDustClouds(); 
             } else if (currentLevel === 3) {
                 drawLevel3Room();
                 drawLevel3Objects();
@@ -1229,43 +1015,43 @@
             }
         }
 
-        function gameLoop() {
-            if (!gameRunning) return;
+        function gameLoop() { 
+            if (!gameRunning) return; 
             updateChristinaPosition(); // Handles Helga too
             if (currentLevel === 2) {
                 updateComets();
                 checkCometCollisions();
-                updateDustClouds();
+                updateDustClouds(); 
             } else if (currentLevel === 3) {
                 updateLevel3State();
             }
-            redrawCanvas();
-            gameIntervalId = requestAnimationFrame(gameLoop);
+            redrawCanvas(); 
+            gameIntervalId = requestAnimationFrame(gameLoop); 
         }
-
-        function spawnComet(isPenaltyLaunch = false) {
+        
+        function spawnComet(isPenaltyLaunch = false) { 
             if (comets.length >= MAX_COMETS) return;
-            if (isPenaltyLaunch) {
+            if (isPenaltyLaunch) { 
                 playSound(soundCometLaunch);
             }
-
+            
             const joanX = canvas.width / 2;
             let joanY;
 
             if (cometOriginSide === 'top') {
-                joanY = 0;
+                joanY = 0; 
             } else { // 'bottom'
-                joanY = canvas.height;
+                joanY = canvas.height; 
             }
-
+            
             const christinaCenterX = christina.x;
-            const christinaCenterY = christina.y;
+            const christinaCenterY = christina.y; 
             const dx = christinaCenterX - joanX;
             const dy = christinaCenterY - joanY;
             const dist = Math.sqrt(dx * dx + dy * dy);
             let vx = 0; let vy = 0;
-            if (dist > 0) { vx = (dx / dist) * COMET_SPEED; vy = (dy / dist) * COMET_SPEED; }
-            else { vy = (cometOriginSide === 'top' ? COMET_SPEED : -COMET_SPEED); }
+            if (dist > 0) { vx = (dx / dist) * COMET_SPEED; vy = (dy / dist) * COMET_SPEED; } 
+            else { vy = (cometOriginSide === 'top' ? COMET_SPEED : -COMET_SPEED); } 
 
             comets.push({
                 x: joanX, y: joanY, vx: vx, vy: vy,
@@ -1283,26 +1069,26 @@
                     comet.active = false;
                 }
             });
-            comets = comets.filter(comet => comet.active);
+            comets = comets.filter(comet => comet.active); 
         }
 
         function drawComets() {
             comets.forEach(comet => {
                 if (comet.active) {
-                    const s = 2;
+                    const s = 2; 
                     ctx.fillStyle = COMET_CAN_COLOR_MAIN;
                     ctx.fillRect(comet.x - comet.width / 2, comet.y - comet.height / 2, comet.width, comet.height);
                     ctx.fillStyle = COMET_CAN_COLOR_TOP_BOTTOM;
-                    ctx.fillRect(comet.x - comet.width / 2, comet.y - comet.height / 2, comet.width, s*2);
-                    ctx.fillRect(comet.x - comet.width / 2, comet.y + comet.height / 2 - s*2, comet.width, s*2);
+                    ctx.fillRect(comet.x - comet.width / 2, comet.y - comet.height / 2, comet.width, s*2); 
+                    ctx.fillRect(comet.x - comet.width / 2, comet.y + comet.height / 2 - s*2, comet.width, s*2); 
                     ctx.fillStyle = COMET_CAN_COLOR_LABEL;
                     ctx.fillRect(comet.x - comet.width/2 + s, comet.y - comet.height/2 + s*3, comet.width - s*2, comet.height - s*6);
                     ctx.fillStyle = '#FF0000';
-                    ctx.fillRect(comet.x - s, comet.y - s, s*2, s*2);
+                    ctx.fillRect(comet.x - s, comet.y - s, s*2, s*2); 
                 }
             });
         }
-
+        
         function spawnDustCloud(x, y) {
             for (let i = 0; i < DUST_PARTICLE_COUNT; i++) {
                 const angle = Math.random() * Math.PI * 2;
@@ -1325,7 +1111,7 @@
                 p.x += p.vx;
                 p.y += p.vy;
                 p.life--;
-                p.opacity = (p.life / DUST_PARTICLE_LIFESPAN) * 0.7;
+                p.opacity = (p.life / DUST_PARTICLE_LIFESPAN) * 0.7; 
                 if (p.life <= 0) {
                     dustClouds.splice(i, 1);
                 }
@@ -1345,13 +1131,13 @@
         function checkCometCollisions() {
             if (!gameRunning || currentLevel !== 2) return;
 
-            for (let i = comets.length - 1; i >= 0; i--) {
+            for (let i = comets.length - 1; i >= 0; i--) { 
                 const comet = comets[i];
                 if (!comet.active) continue;
 
                 const christinaLeft = christina.x - CHRISTINA_SPRITE_WIDTH / 2;
                 const christinaRight = christina.x + CHRISTINA_SPRITE_WIDTH / 2;
-                const christinaTop = christina.y - CHRISTINA_SPRITE_HEIGHT / 2;
+                const christinaTop = christina.y - CHRISTINA_SPRITE_HEIGHT / 2; 
                 const christinaBottom = christina.y + CHRISTINA_SPRITE_HEIGHT / 2;
 
                 const cometLeft = comet.x - comet.width / 2;
@@ -1361,28 +1147,28 @@
 
                 if (christinaLeft < cometRight && christinaRight > cometLeft &&
                     christinaTop < cometBottom && christinaBottom > cometTop) {
-
+                    
                     level2HitsTaken++;
-                    comet.active = false;
-                    console.log("Comet hit! Hits taken:", level2HitsTaken, "Max hits:", MAX_LEVEL_2_HITS);
-                    spawnDustCloud(christina.x, christina.y);
+                    comet.active = false; 
+                    console.log("Comet hit! Hits taken:", level2HitsTaken, "Max hits:", MAX_LEVEL_2_HITS); 
+                    spawnDustCloud(christina.x, christina.y); 
 
                     let flickerCount = 0;
                     const flickerInterval = setInterval(() => {
                         flickerCount++;
-                        if (flickerCount >= 6) {
+                        if (flickerCount >= 6) { 
                             clearInterval(flickerInterval);
                         }
-                    }, 80);
+                    }, 80); 
 
-                    christina.x = canvas.width / 2;
+                    christina.x = canvas.width / 2; 
                     christina.y = canvas.height / 2;
 
                     if (level2HitsTaken >= MAX_LEVEL_2_HITS) {
                         triggerGameOver("Hit by too many Comet cans!");
-                        return;
+                        return; 
                     }
-                    break;
+                    break; 
                 }
             }
         }
@@ -1406,42 +1192,24 @@
 
         function showMainTitleScreen() {
             mainTitleScreen.classList.remove('hidden');
-            gameContainer.classList.add('hidden');
+            gameContainer.classList.add('hidden'); 
             levelTransitionScreen.classList.add('hidden');
-            startScreen.classList.add('hidden');
+            startScreen.classList.add('hidden'); 
             level2StartScreen.classList.add('hidden');
             level3StartScreen.classList.add('hidden');
-            gameOverScreen.classList.remove('game-over-active'); gameOverScreen.classList.add('hidden');
+            gameOverScreen.classList.remove('game-over-active'); gameOverScreen.classList.add('hidden'); 
             gameWinScreen.classList.remove('game-win-active'); gameWinScreen.classList.add('hidden');
             level2WinScreen.classList.remove('game-win-active'); level2WinScreen.classList.add('hidden');
             level2GameOverScreen.classList.remove('game-over-active'); level2GameOverScreen.classList.add('hidden');
             level3WinScreen.classList.remove('game-win-active'); level3WinScreen.classList.add('hidden');
             level3GameOverScreen.classList.remove('game-over-active'); level3GameOverScreen.classList.add('hidden');
-            cutsceneScreen.classList.add('hidden');
+            cutsceneScreen.classList.add('hidden'); 
             if (unlockChapterSelect) chapterSelectButton.classList.remove('hidden');
             else chapterSelectButton.classList.add('hidden');
-            currentLevel = 1;
+            currentLevel = 1; 
         }
-
-        function hideAllMessageBoxes() {
-            startScreen.classList.add('hidden');
-            level2StartScreen.classList.add('hidden');
-            level3StartScreen.classList.add('hidden');
-            gameOverScreen.classList.add('hidden');
-            gameOverScreen.classList.remove('game-over-active');
-            gameWinScreen.classList.add('hidden');
-            gameWinScreen.classList.remove('game-win-active');
-            level2WinScreen.classList.add('hidden');
-            level2WinScreen.classList.remove('game-win-active');
-            level2GameOverScreen.classList.add('hidden');
-            level2GameOverScreen.classList.remove('game-over-active');
-            level3WinScreen.classList.add('hidden');
-            level3WinScreen.classList.remove('game-win-active');
-            level3GameOverScreen.classList.add('hidden');
-            level3GameOverScreen.classList.remove('game-over-active');
-        }
-
-        function showLevelTransition(targetLevel = 1) {
+        
+        function showLevelTransition(targetLevel = 1) { 
             mainTitleScreen.classList.add('hidden');
             levelTransitionScreen.classList.remove('hidden');
             levelTransitionScreen.querySelector('p').textContent = `Level ${targetLevel}`;
@@ -1452,41 +1220,44 @@
             } else if (targetLevel === 3) {
                 levelTransitionScreen.querySelector('h2').textContent = "Helga's Horror!";
             }
+            
+            gameContainer.classList.add('hidden'); 
+            startScreen.classList.add('hidden');
+            level2StartScreen.classList.add('hidden');
+            level3StartScreen.classList.add('hidden');
 
-            gameContainer.classList.add('hidden');
-            hideAllMessageBoxes();
 
             setTimeout(() => {
                 levelTransitionScreen.classList.add('hidden');
-                gameContainer.classList.remove('hidden');
-
+                gameContainer.classList.remove('hidden'); 
+                
                 if (targetLevel === 1) {
-                    startScreen.classList.remove('hidden');
+                    startScreen.classList.remove('hidden'); 
                 } else if (targetLevel === 2) {
-                    level2StartScreen.classList.remove('hidden');
+                    level2StartScreen.classList.remove('hidden'); 
                 } else if (targetLevel === 3) {
                     level3StartScreen.classList.remove('hidden');
                 }
-
-                showGameElements(false);
-                mainGameTitleHeader.classList.remove('hidden');
+                
+                showGameElements(false); 
+                mainGameTitleHeader.classList.remove('hidden'); 
                 subGameTitleHeader.classList.remove('hidden');
-                joanSpriteContainer.classList.remove('hidden');
-                fury = 0;
+                joanSpriteContainer.classList.remove('hidden'); 
+                fury = 0; 
                 drawJoanSpriteInGame();
-            }, 2000);
+            }, 2000); 
         }
-
+        
         function actualGameStart() { // Starts Level 1
             currentLevel = 1;
-            player = christina;
-            score = 0; fury = 0;
+            player = christina; 
+            score = 0; fury = 0; 
             furySoundPlayedThresholds.forty = false; furySoundPlayedThresholds.seventyFive = false;
-            christina.x = canvas.width / 2; christina.y = canvas.height - CHRISTINA_SPRITE_HEIGHT / 2;
-            if (canvas.height < CHRISTINA_SPRITE_HEIGHT * 1.5) christina.y = canvas.height - CHRISTINA_SPRITE_HEIGHT / 6;
-
+            christina.x = canvas.width / 2; christina.y = canvas.height - CHRISTINA_SPRITE_HEIGHT / 2; 
+            if (canvas.height < CHRISTINA_SPRITE_HEIGHT * 1.5) christina.y = canvas.height - CHRISTINA_SPRITE_HEIGHT / 6; 
+            
             gameRunning = true;
-            startScreen.classList.add('hidden');
+            startScreen.classList.add('hidden'); 
             gameOverScreen.classList.remove('game-over-active'); gameOverScreen.classList.add('hidden');
             gameWinScreen.classList.remove('game-win-active'); gameWinScreen.classList.add('hidden');
             level2WinScreen.classList.add('hidden'); level2WinScreen.classList.remove('game-win-active');
@@ -1494,94 +1265,94 @@
             level3StartScreen.classList.add('hidden');
             level3WinScreen.classList.add('hidden'); level3WinScreen.classList.remove('game-win-active');
             level3GameOverScreen.classList.add('hidden'); level3GameOverScreen.classList.remove('game-over-active');
-
-            showGameElements(true);
-            mainGameTitleHeader.classList.remove('hidden');
+            
+            showGameElements(true); 
+            mainGameTitleHeader.classList.remove('hidden'); 
             subGameTitleHeader.classList.remove('hidden');
-            subGameTitleHeader.textContent = "Christina's Closet Clear-out";
-            joanSpriteContainer.classList.remove('hidden');
-
-            drawJoanSpriteInGame();
-            playSound(soundGameStart);
-            initHangers(); updateUI();
-            if (furyIntervalId) clearInterval(furyIntervalId);
-            furyIntervalId = setInterval(increaseFury, FURY_INCREASE_INTERVAL);
+            subGameTitleHeader.textContent = "Christina's Closet Clear-out"; 
+            joanSpriteContainer.classList.remove('hidden'); 
+            
+            drawJoanSpriteInGame(); 
+            playSound(soundGameStart); 
+            initHangers(); updateUI(); 
+            if (furyIntervalId) clearInterval(furyIntervalId); 
+            furyIntervalId = setInterval(increaseFury, FURY_INCREASE_INTERVAL); 
             if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
-            gameLoop();
+            gameLoop(); 
         }
 
-        function prepareLevel2Transition() {
-            gameWinScreen.classList.add('hidden');
+        function prepareLevel2Transition() { 
+            gameWinScreen.classList.add('hidden'); 
             gameWinScreen.classList.remove('game-win-active');
-            showLevelTransition(2);
+            showLevelTransition(2); 
         }
-        function prepareLevel3Transition() {
-            cutsceneScreen.classList.add('hidden');
+        function prepareLevel3Transition() { 
+            cutsceneScreen.classList.add('hidden'); 
             if(soundCarouselMusic) stopSound(soundCarouselMusic);
             showLevelTransition(3);
         }
 
 
         function startLevel2() {
-            currentLevel = 2;
-            player = christina;
+            currentLevel = 2; 
+            player = christina; 
             gameRunning = true;
-
+            
             mainTitleScreen.classList.add('hidden');
             levelTransitionScreen.classList.add('hidden');
-            startScreen.classList.add('hidden');
-            level2StartScreen.classList.add('hidden');
+            startScreen.classList.add('hidden'); 
+            level2StartScreen.classList.add('hidden'); 
             gameOverScreen.classList.add('hidden'); gameOverScreen.classList.remove('game-over-active');
             gameWinScreen.classList.add('hidden'); gameWinScreen.classList.remove('game-win-active');
             level2WinScreen.classList.add('hidden'); level2WinScreen.classList.remove('game-win-active');
             level2GameOverScreen.classList.add('hidden'); level2GameOverScreen.classList.remove('game-over-active');
             level3StartScreen.classList.add('hidden');
-
-            gameContainer.classList.remove('hidden');
+            
+            gameContainer.classList.remove('hidden'); 
 
             level2TilesCleaned = 0;
             level2HitsTaken = 0;
-            fury = 0;
+            fury = 0; 
             furySoundPlayedThresholds.forty = false;
             furySoundPlayedThresholds.seventyFive = false;
-            comets = [];
-            dustClouds = [];
-            cometOriginSide = 'top';
+            comets = []; 
+            dustClouds = []; 
+            cometOriginSide = 'top'; 
 
             christina.x = canvas.width / 2;
-            christina.y = canvas.height / 2;
+            christina.y = canvas.height / 2; 
 
-            showGameElements(true);
+            showGameElements(true); 
             mainGameTitleHeader.classList.remove('hidden');
             subGameTitleHeader.classList.remove('hidden');
-            subGameTitleHeader.textContent = "Bathroom Blitz!";
+            subGameTitleHeader.textContent = "Bathroom Blitz!"; 
             joanSpriteContainer.classList.remove('hidden');
-
-            updateUI();
-            drawJoanSpriteInGame();
-
-            initBathroomGrid();
-            makeRandomTileMessy();
-            makeRandomTileMessy();
-
-            if (furyIntervalId) clearInterval(furyIntervalId);
-
-             if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
-             gameLoop();
+            
+            updateUI(); 
+            drawJoanSpriteInGame(); 
+            
+            initBathroomGrid(); 
+            makeRandomTileMessy(); 
+            makeRandomTileMessy(); 
+            
+            if (furyIntervalId) clearInterval(furyIntervalId); 
+            
+             if (gameIntervalId) cancelAnimationFrame(gameIntervalId); 
+             gameLoop(); 
         }
-
+        
         function startLevel3Actual() {
             currentLevel = 3;
-            player = helga;
+            player = helga; 
             gameRunning = true;
             level3Score = 0;
-            fury = 0;
+            fury = 0; 
             cameraX = 0;
             approachingPlanterSoundPlayed = false;
 
-            helga.x = 50;
-            helga.y = canvas.height - helga.height / 2 - 10;
-            joanFollower.x = -100;
+            helga.x = 50; 
+            helga.y = canvas.height - helga.height / 2 - 10; 
+            joanFollower.x = -100; 
             joanFollower.y = helga.y;
 
             mainTitleScreen.classList.add('hidden');
@@ -1599,13 +1370,13 @@
 
 
             gameContainer.classList.remove('hidden');
-            showGameElements(true);
+            showGameElements(true); 
             subGameTitleHeader.textContent = "Helga's Hasty Housekeeping!";
-            if (furyIntervalId) clearInterval(furyIntervalId);
+            if (furyIntervalId) clearInterval(furyIntervalId); 
 
             initLevel3Objects();
-            updateUI();
-            drawJoanSpriteInGame();
+            updateUI(); 
+            drawJoanSpriteInGame(); 
 
             if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
             gameLoop();
@@ -1613,30 +1384,30 @@
 
         function initLevel3Objects() {
             level3Objects = [];
-            level3Objects.push({ x: 250, y: canvas.height - 50, width: 30, height: 50, type: 'vase', isClean: false, isPlanter: false, color: '#FF1493' });
-            level3Objects.push({ x: 500, y: canvas.height - 70, width: 80, height: 70, type: 'table', isClean: false, isPlanter: false, color: '#A0522D' });
-
-            planterObject = {
-                x: LEVEL3_ROOM_WIDTH - 150,
-                originalX: LEVEL3_ROOM_WIDTH - 150,
-                y: canvas.height - 80,
-                width: 60, height: 80,
-                type: 'planter',
-                isClean: false,
-                isPlanter: true,
-                moved: false,
+            level3Objects.push({ x: 250, y: canvas.height - 50, width: 30, height: 50, type: 'vase', isClean: false, isPlanter: false, color: '#FFC0CB' });
+            level3Objects.push({ x: 500, y: canvas.height - 70, width: 80, height: 70, type: 'table', isClean: false, isPlanter: false, color: '#D2B48C' });
+            
+            planterObject = { 
+                x: LEVEL3_ROOM_WIDTH - 150, 
+                originalX: LEVEL3_ROOM_WIDTH - 150, 
+                y: canvas.height - 80, 
+                width: 60, height: 80, 
+                type: 'planter', 
+                isClean: false, 
+                isPlanter: true, 
+                moved: false, 
                 floorCleaned: false,
-                cleanedVisual: false,
-                color: '#228B22',
-                bambooColor: '#006400'
+                cleanedVisual: false, 
+                color: '#228B22', 
+                bambooColor: '#006400' 
             };
             level3Objects.push(planterObject);
         }
 
         function drawLevel3Room() {
-            ctx.fillStyle = '#6B8E23';
+            ctx.fillStyle = '#6B8E23'; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#808080';
+            ctx.fillStyle = '#808080'; 
             ctx.fillRect(0, canvas.height - 20, canvas.width, 20);
         }
         function drawLevel3Objects() {
@@ -1644,14 +1415,14 @@
                 const objCanvasX = obj.x - cameraX;
                 if (objCanvasX + obj.width > 0 && objCanvasX < canvas.width) {
                     if (obj.isPlanter && obj.cleanedVisual) {
-                        ctx.fillStyle = '#90EE90';
-                        ctx.fillRect(obj.originalX - cameraX, obj.y, obj.width, obj.height);
+                        ctx.fillStyle = '#90EE90'; 
+                        ctx.fillRect(obj.originalX - cameraX, obj.y, obj.width, obj.height); 
                     }
-
-                    ctx.fillStyle = obj.isClean ? '#C0C0C0' : obj.color;
+                    
+                    ctx.fillStyle = obj.isClean ? '#C0C0C0' : obj.color; 
                     ctx.fillRect(objCanvasX, obj.y, obj.width, obj.height);
 
-                    if (obj.isPlanter) {
+                    if (obj.isPlanter) { 
                         ctx.fillStyle = obj.bambooColor;
                         const bambooWidth = obj.width / 5;
                         const bambooHeight = obj.height * 0.7;
@@ -1666,17 +1437,17 @@
                 }
             });
         }
-
+        
         function drawJoanFollower() {
             const joanCanvasX = joanFollower.x - cameraX;
-            if (joanCanvasX + joanFollower.width > 0 && joanCanvasX < canvas.width) {
-                ctx.fillStyle = '#4B0082';
+            if (joanCanvasX + joanFollower.width > 0 && joanCanvasX < canvas.width) { 
+                ctx.fillStyle = '#AA0000'; 
                 ctx.fillRect(joanCanvasX, joanFollower.y - joanFollower.height, joanFollower.width, joanFollower.height);
             }
         }
 
         function updateLevel3State() {
-            if (joanFollower.x < player.x - 50) {
+            if (joanFollower.x < player.x - 50) { 
                 joanFollower.x += joanFollower.speed;
             }
             if (joanFollower.x + joanFollower.width >= player.x) {
@@ -1685,13 +1456,13 @@
             }
 
             if (planterObject) {
-                const helgaCanvasX = player.x - cameraX;
+                const helgaCanvasX = player.x - cameraX; 
                 const planterCanvasX = planterObject.x - cameraX;
                 if (Math.abs(helgaCanvasX - (planterCanvasX + planterObject.width / 2)) < planterObject.width * 1.5 && !approachingPlanterSoundPlayed && !planterObject.floorCleaned && !planterObject.moved) {
                     playSound(soundPlanterApproach);
                     approachingPlanterSoundPlayed = true;
                 } else if (Math.abs(helgaCanvasX - (planterCanvasX + planterObject.width / 2)) >= planterObject.width * 1.5 && approachingPlanterSoundPlayed) {
-                    stopSound(soundPlanterApproach);
+                    stopSound(soundPlanterApproach); 
                     approachingPlanterSoundPlayed = false;
                 }
             }
@@ -1699,15 +1470,15 @@
 
 
         function triggerGameOver(message) {
-            if (!gameRunning) return;
+            if (!gameRunning) return; 
             gameRunning = false;
             if (furyIntervalId) clearInterval(furyIntervalId);
             if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
-            if (cutsceneAnimationId) cancelAnimationFrame(cutsceneAnimationId); cutsceneActive = false;
-            stopSound(soundPlanterApproach);
+            if (cutsceneAnimationId) cancelAnimationFrame(cutsceneAnimationId); cutsceneActive = false; 
+            stopSound(soundPlanterApproach); 
             if(soundCarouselMusic) stopSound(soundCarouselMusic);
 
-
+            
             if (currentLevel === 3) {
                 level3GameOverMessageText.textContent = message || "Helga, you're fired!";
                 level3GameOverFinalScoreText.textContent = level3Score;
@@ -1719,54 +1490,54 @@
                 level3GameOverScreen.classList.add('game-over-active');
             } else if (currentLevel === 2) {
                 level2GameOverMessageText.textContent = message || "The bathroom is a mess and Joan is furious!";
-                level2GameOverFinalScoreText.textContent = level2TilesCleaned;
-                level2LargeJoanGameOver.src = joanImageURLs.gameOver;
+                level2GameOverFinalScoreText.textContent = level2TilesCleaned; 
+                level2LargeJoanGameOver.src = joanImageURLs.gameOver; 
                 level2LargeJoanGameOver.onerror = () => { level2GameOverMessageText.innerHTML += "<br>Joan image error.";};
-
+                
                 showGameElements(false);
                 gameContainer.classList.remove('hidden');
                 level2GameOverScreen.classList.remove('hidden');
-                level2GameOverScreen.classList.add('game-over-active');
-            } else {
-                fury = MAX_FURY;
+                level2GameOverScreen.classList.add('game-over-active'); 
+            } else { 
+                fury = MAX_FURY; 
                 gameOverMessageTextElem.textContent = message || "NO WIRE HANGERS EVER!";
-                finalScoreTextElem.textContent = score;
+                finalScoreTextElem.textContent = score; 
                 largeJoanGameOverImg.src = joanImageURLs.gameOver;
                 largeJoanGameOverImg.onerror = function() {
                     gameOverMessageTextElem.innerHTML = "GAME OVER!<br>Joan's image failed to load.";
                 };
-                showGameElements(false);
-                gameContainer.classList.remove('hidden');
+                showGameElements(false); 
+                gameContainer.classList.remove('hidden'); 
                 gameOverScreen.classList.remove('hidden');
                 gameOverScreen.classList.add('game-over-active');
             }
-            updateUI();
-
-            playSound(soundGameOver);
+            updateUI(); 
+            
+            playSound(soundGameOver); 
         }
-
+        
         function triggerGameWin() { // For Level 1 Win
-            if (!gameRunning) return;
+            if (!gameRunning) return; 
             gameRunning = false;
             if (furyIntervalId) clearInterval(furyIntervalId);
             if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
 
-            winScreenImageElem.src = joanImageURLs.win;
+            winScreenImageElem.src = joanImageURLs.win; 
             gameWinMessageTextElem.textContent = "You cleaned the closet... for now.";
             winFinalScoreTextElem.textContent = score;
 
             showGameElements(false);
             gameContainer.classList.remove('hidden');
             gameWinScreen.classList.remove('hidden');
-            gameWinScreen.classList.add('game-win-active');
+            gameWinScreen.classList.add('game-win-active'); 
         }
 
         function triggerGameWinLevel2() {
             if (!gameRunning) return;
             gameRunning = false;
             if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
-
-            startCarouselCutscene();
+            
+            startCarouselCutscene(); 
         }
         function triggerLevel3Win() {
             if (!gameRunning) return;
@@ -1774,9 +1545,9 @@
             if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
             stopSound(soundPlanterApproach);
 
-            unlockChapterSelect = true;
+            unlockChapterSelect = true; 
             level3WinFinalScoreText.textContent = level3Score;
-            level3WinScreenImage.src = joanImageURLs.win;
+            level3WinScreenImage.src = joanImageURLs.win; 
             level3WinScreenImage.onerror = () => { level3WinMessageText.innerHTML += "<br>Win image error.";};
 
             showGameElements(false);
@@ -1785,14 +1556,16 @@
             level3WinScreen.classList.add('game-win-active');
         }
 
+
         // --- Cutscene Functions ---
-        // Completely new cutscene implementation
         function startCarouselCutscene() {
             cutsceneActive = true;
-            if(soundCarouselMusic) playSound(soundCarouselMusic, false);
+            cutsceneFrame = 0;
+            cutsceneDialogueStage = 0; 
+            if(soundCarouselMusic) playSound(soundCarouselMusic, false); 
 
             showGameElements(false);
-            gameContainer.classList.add('hidden');
+            gameContainer.classList.add('hidden'); 
             mainTitleScreen.classList.add('hidden');
             levelTransitionScreen.classList.add('hidden');
             startScreen.classList.add('hidden');
@@ -1805,223 +1578,168 @@
             level3WinScreen.classList.add('hidden');
             level3GameOverScreen.classList.add('hidden');
 
+
             cutsceneScreen.classList.remove('hidden');
             cutsceneCanvas.width = Math.min(400, window.innerWidth * 0.9);
             cutsceneCanvas.height = cutsceneCanvas.width * (3/4);
 
-            // New cutscene state
-            let sceneStep = 0;
-            let frame = 0;
-            let dialogue = [
-                { speaker: "Joan", text: "Are you having a happy birthday, Christina, darling?", duration: 180 }, // Approx 3 seconds
-                { speaker: "Christina", text: "This is the best birthday I ever had! I love you, Mommie Dearest!", duration: 300 }, // Approx 5 seconds
-                { speaker: "Joan", text: "I love you too, Christina!", duration: 180 } // Approx 3 seconds
-            ];
-            let currentText = dialogue[0].speaker + ": " + dialogue[0].text;
-            let textAlpha = 1;
-            let fadeIn = true;
-            let fadeFrame = 0;
-            let carouselAngle = 0;
-            let carouselSpeed = 0.01;
 
-            function drawCutscene() {
-                csCtx.clearRect(0, 0, cutsceneCanvas.width, cutsceneCanvas.height);
+            csChristina.x = cutsceneCanvas.width * 0.3; 
+            csChristina.y = cutsceneCanvas.height * 0.65;
+            csChristina.bobOffset = 0;
+            
+            csJoan.x = cutsceneCanvas.width * 0.7; 
+            csJoan.y = cutsceneCanvas.height * 0.65;
+            csJoan.bobOffset = 5; 
 
-                // 1. Background:
-                csCtx.fillStyle = '#87CEEB'; // Light Sky Blue
-                csCtx.fillRect(0, 0, cutsceneCanvas.width, cutsceneCanvas.height);
+            carouselRotation = 0;
 
-                // 2. Carousel Elements:
-                const cx = cutsceneCanvas.width / 2;
-                const cy = cutsceneCanvas.height * 0.75; // Lowered for more sky
-                const carouselRadius = cutsceneCanvas.width * 0.35;
-                const poleWidth = 15;
-                const animalHeight = 40;
-                const animalWidth = 25;
-                const numAnimals = 4; // Or more, for visual density
-                const bobAmplitude = 10;
-                const bobFrequency = 5;
-                const pScale = 1.5; // Smaller scale for cutscene
-
-                // Central Pole:
-                csCtx.fillStyle = '#CD7F32'; // Bronze-ish
-                csCtx.fillRect(cx - poleWidth / 2, cy - carouselRadius * 1.2, poleWidth, carouselRadius * 1.2);
-
-                // Carousel Base (Static part under rotating part):
-                csCtx.fillStyle = '#FFD700'; // Gold
-                csCtx.beginPath();
-                csCtx.ellipse(cx, cy, carouselRadius, carouselRadius * 0.3, 0, 0, Math.PI * 2);
-                csCtx.fill();
-                csCtx.fillStyle = '#DC143C'; // Crimson decorative band
-                csCtx.beginPath();
-                csCtx.ellipse(cx, cy, carouselRadius, carouselRadius * 0.3, 0, Math.PI, 0); // Lower half for band
-                csCtx.ellipse(cx, cy, carouselRadius * 0.95, carouselRadius * 0.28, 0, 0, Math.PI, true); // Inner part of band
-                csCtx.fill();
-
-                // Animals (Loop):
-                for (let i = 0; i < numAnimals; i++) {
-                    const animalAngle = carouselAngle + (Math.PI * 2 * i) / numAnimals;
-                    const animalX = cx + Math.cos(animalAngle) * carouselRadius * 0.75;
-                    const verticalBob = Math.sin(carouselAngle * bobFrequency + (Math.PI * 2 * i) / numAnimals) * bobAmplitude;
-                    const animalY = cy - carouselRadius * 0.1 - animalHeight / 2 + verticalBob; // Positioned on the upper part of the base
-
-                    // Animal Pole:
-                    csCtx.fillStyle = '#A9A9A9'; // DarkGray
-                    csCtx.fillRect(animalX - 2, cy - carouselRadius * 0.1 - animalHeight - 10 + verticalBob, 4, animalHeight + 10);
-
-                    // Animal Body (simple shape, e.g., horse-like):
-                    csCtx.fillStyle = (i % 2 === 0) ? '#D2B48C' : '#C0C0C0'; // Tan or Silver for variety
-                    csCtx.beginPath();
-                    csCtx.ellipse(animalX, animalY, animalWidth, animalHeight / 1.5, 0, 0, Math.PI * 2);
-                    csCtx.fill();
-                    // Simple head
-                    csCtx.beginPath();
-                    csCtx.arc(animalX + animalWidth * 0.75, animalY - animalHeight * 0.25, animalHeight * 0.3, 0, Math.PI * 2);
-                    csCtx.fill();
-                    // Simple tail
-                    csCtx.fillRect(animalX - animalWidth * 0.9, animalY, animalWidth * 0.5, 5);
-
-                    // Christina (on animal 0):
-                    if (i === 0) {
-                        const christinaOnAnimalX = animalX;
-                        const christinaOnAnimalY = animalY - animalHeight * 0.5; // Adjust so she's 'on' it
-                        // Simplified Christina Drawing for Cutscene
-                        //const pScale = 1.5; // Smaller scale for cutscene - defined above
-                        const csChristinaWidth = CHRISTINA_SPRITE_WIDTH * pScale / 2;
-                        const csChristinaHeight = CHRISTINA_SPRITE_HEIGHT * pScale / 2;
-                        const csBaseX = christinaOnAnimalX - csChristinaWidth / 2;
-                        const csBaseY = christinaOnAnimalY - csChristinaHeight;
-
-                        csCtx.fillStyle = '#FFDBAC'; // Skin tone
-                        csCtx.fillRect(csBaseX + pScale*3, csBaseY + pScale*5, pScale*6, pScale*3); // Face
-                        csCtx.fillStyle = '#50C878'; // Dress color (matches in-game Christina)
-                        csCtx.fillRect(csBaseX + pScale*1, csBaseY + pScale*9, pScale*10, pScale*5); // Dress body
-                        csCtx.fillStyle = '#FFFFFF'; // Hair bow / decoration
-                        csCtx.fillRect(csBaseX + pScale*3, csBaseY, pScale*6, pScale*2); // Hair top
-                        // Simplified arms/legs if desired, or omit for simplicity
-                        csCtx.fillStyle = '#FFDBAC'; // Skin for arms
-                        csCtx.fillRect(csBaseX, csBaseY + pScale*9, pScale*2, pScale*3); // Left arm
-                        csCtx.fillRect(csBaseX + pScale*10, csBaseY + pScale*9, pScale*2, pScale*3); // Right arm
-                    }
-
-                    // Joan (on animal 1, or another animal not Christina's):
-                    if (i === 1) { // Ensure this is a different animal than Christina
-                        const joanOnAnimalX = animalX;
-                        const joanOnAnimalY = animalY - animalHeight * 0.5; // Adjust so she's 'on' it
-                        // Joan's New Sprite Drawing
-                        //const pScale = 1.5; // Defined above
-                        const joanDressWidth = 30 * pScale / 2;
-                        const joanDressHeight = 35 * pScale / 2;
-                        const joanHatDiam = 28 * pScale / 2;
-                        const jBaseX = joanOnAnimalX - joanDressWidth / 2;
-                        const jBaseY = joanOnAnimalY - joanDressHeight;
-
-                        csCtx.fillStyle = '#FFFFFF'; // White dress
-                        csCtx.beginPath();
-                        csCtx.moveTo(jBaseX, jBaseY + joanDressHeight * 0.2);
-                        csCtx.lineTo(jBaseX + joanDressWidth / 2, jBaseY);
-                        csCtx.lineTo(jBaseX + joanDressWidth, jBaseY + joanDressHeight * 0.2);
-                        csCtx.lineTo(jBaseX + joanDressWidth * 0.8, jBaseY + joanDressHeight);
-                        csCtx.lineTo(jBaseX + joanDressWidth * 0.2, jBaseY + joanDressHeight);
-                        csCtx.closePath();
-                        csCtx.fill();
-
-                        csCtx.fillStyle = '#FFDBAC'; // Skin tone (face)
-                        csCtx.beginPath();
-                        csCtx.arc(joanOnAnimalX, jBaseY - joanHatDiam * 0.3, 8 * pScale / 2, 0, Math.PI * 2);
-                        csCtx.fill();
-
-                        csCtx.fillStyle = '#FFFFFF'; // White hat
-                        csCtx.beginPath();
-                        csCtx.ellipse(joanOnAnimalX, jBaseY - joanHatDiam * 0.5, joanHatDiam / 2, joanHatDiam / 3, 0, 0, Math.PI * 2); // Hat brim
-                        csCtx.fill();
-                        csCtx.beginPath();
-                        csCtx.arc(joanOnAnimalX, jBaseY - joanHatDiam * 0.7, joanHatDiam / 3, 0, Math.PI * 2); // Hat crown
-                        csCtx.fill();
-                        csCtx.fillStyle = '#FF69B4'; // Pink hatband
-                        csCtx.fillRect(joanOnAnimalX - joanHatDiam/2.5, jBaseY - joanHatDiam * 0.6, joanHatDiam/1.25, 3 * pScale/2 );
-                    }
-                }
-
-                // 3. Dialogue Text Display (at the bottom, similar to existing):
-                csCtx.save();
-                csCtx.globalAlpha = textAlpha; // textAlpha is managed by cutsceneLoop
-                csCtx.fillStyle = 'rgba(0,0,0,0.7)';
-                csCtx.fillRect(10, cutsceneCanvas.height - 80, cutsceneCanvas.width - 20, 70);
-                csCtx.font = 'bold 13px "Press Start 2P", monospace';
-                csCtx.fillStyle = '#fff';
-                csCtx.textAlign = 'center';
-                // currentText is already set by startCarouselCutscene/advanceScene with "Speaker: Text"
-                // Handle multi-line text if needed by splitting currentText by '\n'
-                const lines = currentText.split('\n');
-                for(let k=0; k < lines.length; k++) {
-                    csCtx.fillText(lines[k], cutsceneCanvas.width/2, cutsceneCanvas.height - 55 + k*18);
-                }
-                csCtx.restore();
-            }
-
-            function advanceScene() {
-                sceneStep++;
-                if(sceneStep < dialogue.length) {
-                    currentText = dialogue[sceneStep].speaker + ": " + dialogue[sceneStep].text;
-                    fadeIn = true;
-                    fadeFrame = 0;
-                } else {
-                    // End cutscene
-                    cutsceneActive = false;
-                    if(soundCarouselMusic) stopSound(soundCarouselMusic);
-                    cutsceneScreen.classList.add('hidden');
-                    gameContainer.classList.remove('hidden');
-                    hideAllMessageBoxes();
-                    level2WinScreen.classList.remove('hidden');
-                    level2WinScreen.classList.add('game-win-active');
-                    level2WinFinalScoreText.textContent = level2TilesCleaned;
-                    level2WinScreenImage.src = joanImageURLs.win;
-                }
-            }
-
-            function cutsceneLoop() {
-                if (!cutsceneActive) return;
-                frame++;
-                carouselAngle -= carouselSpeed; // Changed to decrement for clockwise
-                if (carouselAngle < 0) {       // Ensure positive angle for consistency
-                    carouselAngle += Math.PI * 2;
-                }
-                // Fade in/out text
-                if (fadeIn) {
-                    textAlpha += 0.08;
-                    if (textAlpha >= 1) { textAlpha = 1; fadeIn = false; fadeFrame = 0; }
-                } else if (frame > dialogue[sceneStep].duration) { // Check duration from dialogue object
-                    textAlpha -= 0.08;
-                    if (textAlpha <= 0) { textAlpha = 0; advanceScene(); frame = 0; }
-                }
-                drawCutscene();
-                if (cutsceneActive) cutsceneAnimationId = requestAnimationFrame(cutsceneLoop);
-            }
-            // Start loop
-            textAlpha = 0;
-            fadeIn = true;
-            fadeFrame = 0;
-            frame = 0;
-            sceneStep = 0;
-            currentText = dialogue[0].speaker + ": " + dialogue[0].text;
-            cutsceneLoop();
+            if (cutsceneAnimationId) cancelAnimationFrame(cutsceneAnimationId);
+            carouselCutsceneLoop();
         }
 
-        playFromTitleButton.addEventListener('click', () => showLevelTransition(1) );
-        startButton.addEventListener('click', actualGameStart);
-        startLevel2Button.addEventListener('click', startLevel2);
-        startLevel3Button.addEventListener('click', startLevel3Actual);
+        function drawCutsceneBackground() {
+            csCtx.fillStyle = '#402060'; 
+            csCtx.fillRect(0, 0, cutsceneCanvas.width, cutsceneCanvas.height);
 
-        playAgainButton.addEventListener('click', () => {
-            showMainTitleScreen();
-            resizeCanvas();
+            const poleWidth = 10;
+            const poleHeight = cutsceneCanvas.height * 0.8;
+            const poleY = cutsceneCanvas.height * 0.1;
+            
+            csCtx.fillStyle = '#8B4513'; 
+            let pole1X = (cutsceneCanvas.width * 0.3 + carouselRotation) % cutsceneCanvas.width;
+            if (pole1X < -poleWidth) pole1X += cutsceneCanvas.width + poleWidth; 
+            csCtx.fillRect(pole1X, poleY + csChristina.bobOffset, poleWidth, poleHeight);
+            
+            let pole2X = (cutsceneCanvas.width * 0.7 + carouselRotation) % cutsceneCanvas.width;
+            if (pole2X < -poleWidth) pole2X += cutsceneCanvas.width + poleWidth;
+            csCtx.fillRect(pole2X, poleY + csJoan.bobOffset, poleWidth, poleHeight);
+
+            csCtx.fillStyle = '#FFD700'; 
+            csCtx.beginPath();
+            csCtx.ellipse(cutsceneCanvas.width / 2, cutsceneCanvas.height * 0.15, cutsceneCanvas.width * 0.4, cutsceneCanvas.height * 0.1, 0, 0, Math.PI * 2);
+            csCtx.fill();
+            csCtx.fillStyle = '#D2B48C'; 
+            csCtx.beginPath();
+            csCtx.ellipse(cutsceneCanvas.width / 2, cutsceneCanvas.height * 0.20, cutsceneCanvas.width * 0.38, cutsceneCanvas.height * 0.08, 0, 0, Math.PI * 2);
+            csCtx.fill();
+        }
+
+        function drawCutsceneCharacter(x, y, baseColor, isJoan, bobOffset = 0) {
+            const w = 20; const h = 40; 
+            const currentY = y + bobOffset; 
+            csCtx.fillStyle = baseColor;
+            csCtx.fillRect(x - w/2, currentY - h, w, h); 
+
+            csCtx.fillStyle = isJoan ? '#FFDBAC' : '#FFC0CB'; 
+            csCtx.fillRect(x - w/3, currentY - h - h/3, w * (2/3), h/3);
+        }
+        
+        function drawCutsceneDialogue(text, charX, charY, bobOffset = 0) {
+            csCtx.font = '10px "Press Start 2P"'; 
+            const textLines = text.split('\n');
+            let maxWidth = 0;
+            textLines.forEach(line => {
+                const lineWidth = csCtx.measureText(line).width;
+                if (lineWidth > maxWidth) maxWidth = lineWidth;
+            });
+
+            const bubblePadding = 8;
+            const bubbleWidth = maxWidth + bubblePadding * 2;
+            const bubbleHeight = (textLines.length * 12) + bubblePadding * 2; 
+            
+            let bubbleX = charX - bubbleWidth / 2;
+            let bubbleY = charY + bobOffset - CHRISTINA_SPRITE_HEIGHT - bubbleHeight - 25; 
+
+            if (bubbleX < 5) bubbleX = 5;
+            if (bubbleX + bubbleWidth > cutsceneCanvas.width - 5) bubbleX = cutsceneCanvas.width - 5 - bubbleWidth;
+            if (bubbleY < 5) bubbleY = 5;
+
+
+            csCtx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            csCtx.fillRect(bubbleX, bubbleY, bubbleWidth, bubbleHeight);
+            csCtx.strokeStyle = 'black';
+            csCtx.lineWidth = 1;
+            csCtx.strokeRect(bubbleX, bubbleY, bubbleWidth, bubbleHeight);
+
+            csCtx.fillStyle = 'black';
+            csCtx.textAlign = 'left';
+            textLines.forEach((line, index) => {
+                csCtx.fillText(line, bubbleX + bubblePadding, bubbleY + bubblePadding + (index * 12) + 8);
+            });
+        }
+
+
+        function carouselCutsceneLoop() {
+            if (!cutsceneActive) return;
+            cutsceneFrame++;
+            csCtx.clearRect(0, 0, cutsceneCanvas.width, cutsceneCanvas.height);
+
+            carouselRotation -= 0.5; 
+            if (carouselRotation < -cutsceneCanvas.width) carouselRotation = 0;
+            csChristina.bobOffset = Math.sin(cutsceneFrame * 0.05) * 5; 
+            csJoan.bobOffset = Math.sin(cutsceneFrame * 0.05 + Math.PI) * 5; 
+
+            drawCutsceneBackground();
+            
+            let christinaPoleX = (cutsceneCanvas.width * 0.3 + carouselRotation) % cutsceneCanvas.width;
+            if (christinaPoleX < -20) christinaPoleX += cutsceneCanvas.width + 20;
+            let joanPoleX = (cutsceneCanvas.width * 0.7 + carouselRotation) % cutsceneCanvas.width;
+            if (joanPoleX < -20) joanPoleX += cutsceneCanvas.width + 20;
+
+
+            drawCutsceneCharacter(christinaPoleX + 5, csChristina.y, '#FFC0CB', false, csChristina.bobOffset);
+            drawCutsceneCharacter(joanPoleX + 5, csJoan.y, '#000080', true, csJoan.bobOffset);
+
+            if (cutsceneDialogueStage === 0 && cutsceneFrame > CUTSCENE_JOAN_SPEAKS_START_FRAME) { 
+                cutsceneDialogueStage = 1;
+                cutsceneFrame = 0; 
+            }
+            if (cutsceneDialogueStage === 1) {
+                drawCutsceneDialogue("Are you having a happy\nbirthday, Christina, darling?", joanPoleX + 5, csJoan.y, csJoan.bobOffset);
+                if (cutsceneFrame > CUTSCENE_JOAN_SPEAKS_DURATION) { 
+                    cutsceneDialogueStage = 2; 
+                    cutsceneFrame = 0;
+                }
+            }
+            if (cutsceneDialogueStage === 2 && cutsceneFrame > CUTSCENE_PAUSE_1_DURATION) { 
+                drawCutsceneDialogue("This is the best party\nI ever had! I love you,\nMommie Dearest!", christinaPoleX + 5, csChristina.y, csChristina.bobOffset);
+                if (cutsceneFrame > CUTSCENE_PAUSE_1_DURATION + CUTSCENE_CHRISTINA_SPEAKS_DURATION) { 
+                    cutsceneDialogueStage = 3; 
+                    cutsceneFrame = 0;
+                }
+            }
+            
+            if (cutsceneFrame > CUTSCENE_TOTAL_DURATION_FRAMES) { 
+                cutsceneActive = false;
+                if(soundCarouselMusic) stopSound(soundCarouselMusic); 
+                cutsceneScreen.classList.add('hidden');
+                gameContainer.classList.remove('hidden');
+                level2WinScreen.classList.remove('hidden');
+                level2WinScreen.classList.add('game-win-active'); 
+                level2WinFinalScoreText.textContent = level2TilesCleaned; 
+                level2WinScreenImage.src = joanImageURLs.win; 
+                return;
+            }
+
+            cutsceneAnimationId = requestAnimationFrame(carouselCutsceneLoop);
+        }
+
+
+        playFromTitleButton.addEventListener('click', () => showLevelTransition(1) ); 
+        startButton.addEventListener('click', actualGameStart); 
+        startLevel2Button.addEventListener('click', startLevel2); 
+        startLevel3Button.addEventListener('click', startLevel3Actual);
+        
+        playAgainButton.addEventListener('click', () => { 
+            showMainTitleScreen(); 
+            resizeCanvas(); 
         });
 
-        playAgainWinButton.addEventListener('click', prepareLevel2Transition);
+        playAgainWinButton.addEventListener('click', prepareLevel2Transition); 
 
-        nextLevelButton.addEventListener('click', prepareLevel3Transition);
-
+        nextLevelButton.addEventListener('click', prepareLevel3Transition); 
+        
         mainMenuFromL2WinButton.addEventListener('click', () => {
             showMainTitleScreen();
             resizeCanvas();
@@ -2030,7 +1748,7 @@
         playLevel2AgainButton.addEventListener('click', () => {
             level2GameOverScreen.classList.add('hidden');
             level2GameOverScreen.classList.remove('game-over-active');
-            startLevel2();
+            startLevel2(); 
             resizeCanvas();
         });
         mainMenuFromL2GameOverButton.addEventListener('click', () => {
@@ -2055,25 +1773,25 @@
         });
 
 
-        window.addEventListener('keydown', (e) => {
+        window.addEventListener('keydown', (e) => { 
             keysPressed[e.key.toLowerCase()] = true;
-            if ([' ', 'Enter'].includes(e.key) && gameRunning) {
-                e.preventDefault();
-                attemptInteraction();
+            if ([' ', 'Enter'].includes(e.key) && gameRunning) { 
+                e.preventDefault(); 
+                attemptInteraction(); 
             }
             // Debug Hotkeys
             if (e.ctrlKey && e.shiftKey) {
                 let jumped = false;
-                if (e.key === '1') {
+                if (e.key === '1') { 
                     e.preventDefault(); console.log("Debug: Jumping to Level 1 Instructions");
                     jumped = true; showLevelTransition(1);
-                } else if (e.key === '2' || e.key.toLowerCase() === 'd') {
+                } else if (e.key === '2' || e.key.toLowerCase() === 'd') { 
                      e.preventDefault(); console.log("Debug: Jumping to Level 2 Instructions");
-                    jumped = true; showLevelTransition(2);
+                    jumped = true; showLevelTransition(2); 
                 } else if (e.key === '3') {
                     e.preventDefault(); console.log("Debug: Jumping to Level 3 Instructions");
                     jumped = true; showLevelTransition(3);
-                } else if (e.key.toLowerCase() === 'c') {
+                } else if (e.key.toLowerCase() === 'c') { 
                     e.preventDefault(); console.log("Debug: Jumping to Carousel Cutscene");
                     jumped = true; startCarouselCutscene();
                 } else if (e.key.toLowerCase() === 'k' && gameRunning) { // Win current level
@@ -2086,11 +1804,11 @@
                 }
 
                 if (jumped && (gameRunning || cutsceneActive)) {
-                     gameRunning = false; cutsceneActive = false;
-                     if (furyIntervalId) clearInterval(furyIntervalId);
-                     if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
-                     if (cutsceneAnimationId) cancelAnimationFrame(cutsceneAnimationId);
-                     if(soundCarouselMusic) stopSound(soundCarouselMusic);
+                     gameRunning = false; cutsceneActive = false; 
+                     if (furyIntervalId) clearInterval(furyIntervalId); 
+                     if (gameIntervalId) cancelAnimationFrame(gameIntervalId); 
+                     if (cutsceneAnimationId) cancelAnimationFrame(cutsceneAnimationId); 
+                     if(soundCarouselMusic) stopSound(soundCarouselMusic); 
                      stopSound(soundPlanterApproach);
                 }
             }
@@ -2101,9 +1819,9 @@
             }
         });
         window.addEventListener('keyup', (e) => { keysPressed[e.key.toLowerCase()] = false; });
-        function setupTouchControls() {
-            if (!isTouchDevice) return;
-
+        function setupTouchControls() { 
+            if (!isTouchDevice) return; 
+            
             document.getElementById('touchUp').addEventListener('touchstart', (e) => { e.preventDefault(); keysPressed['ArrowUp'] = true; }, { passive: false });
             document.getElementById('touchUp').addEventListener('touchend', (e) => { e.preventDefault(); keysPressed['ArrowUp'] = false; }, { passive: false });
             document.getElementById('touchDown').addEventListener('touchstart', (e) => { e.preventDefault(); keysPressed['ArrowDown'] = true; }, { passive: false });
@@ -2112,33 +1830,33 @@
             document.getElementById('touchLeft').addEventListener('touchend', (e) => { e.preventDefault(); keysPressed['ArrowLeft'] = false; }, { passive: false });
             document.getElementById('touchRight').addEventListener('touchstart', (e) => { e.preventDefault(); keysPressed['ArrowRight'] = true; }, { passive: false });
             document.getElementById('touchRight').addEventListener('touchend', (e) => { e.preventDefault(); keysPressed['ArrowRight'] = false; }, { passive: false });
-
+            
             const actionButton = document.getElementById('touchAction');
-            if (actionButton) {
-                actionButton.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    if (gameRunning) attemptInteraction();
-                }, { passive: false });
+            if (actionButton) { 
+                actionButton.addEventListener('touchstart', (e) => { 
+                    e.preventDefault(); 
+                    if (gameRunning) attemptInteraction(); 
+                }, { passive: false }); 
             }
         }
-        function resizeCanvas() {
+        function resizeCanvas() { 
             const container = document.querySelector('.game-container');
-            let availableWidth = container.clientWidth - 20;
-            let availableHeight = window.innerHeight - container.offsetTop - 50;
-            if (isTouchDevice && touchControlsContainer.style.display === 'flex' && !touchControlsContainer.classList.contains('hidden')) { availableHeight -= (touchControlsContainer.offsetHeight + 20); }
+            let availableWidth = container.clientWidth - 20; 
+            let availableHeight = window.innerHeight - container.offsetTop - 50; 
+            if (isTouchDevice && touchControlsContainer.style.display === 'flex' && !touchControlsContainer.classList.contains('hidden')) { availableHeight -= (touchControlsContainer.offsetHeight + 20); } 
             else { availableHeight -= 20; }
             availableHeight = Math.max(200, availableHeight); const aspectRatio = 4/3;
             let newWidth = availableWidth; let newHeight = newWidth / aspectRatio;
             if (newHeight > availableHeight) { newHeight = availableHeight; newWidth = newHeight * aspectRatio; }
-            newWidth = Math.min(newWidth, availableWidth);
-
-            canvas.width = Math.max(240, newWidth);
-            canvas.height = Math.max(180, newHeight);
-            cutsceneCanvas.width = Math.max(240, newWidth);
+            newWidth = Math.min(newWidth, availableWidth); 
+            
+            canvas.width = Math.max(240, newWidth); 
+            canvas.height = Math.max(180, newHeight); 
+            cutsceneCanvas.width = Math.max(240, newWidth); 
             cutsceneCanvas.height = Math.max(180, newHeight);
-
-            if (!gameRunning && mainTitleScreen.classList.contains('hidden') && !cutsceneActive) {
-                if (currentLevel === 1 || currentLevel === 3) {
+            
+            if (!gameRunning && mainTitleScreen.classList.contains('hidden') && !cutsceneActive) { 
+                if (currentLevel === 1 || currentLevel === 3) { 
                     const currentPlayer = (currentLevel === 3) ? helga : christina;
                     currentPlayer.x = canvas.width / 2;
                     if (currentLevel === 1) {
@@ -2151,12 +1869,12 @@
                     christina.x = canvas.width / 2;
                     christina.y = canvas.height / 2;
                 }
-
+                
                 ctx.clearRect(0,0,canvas.width, canvas.height);
-                if (!gameRunning && canvas.width && canvas.height) {
+                if (canvas.width && canvas.height) {
                     if(currentLevel === 1) drawClosetBackground();
-                    else if(currentLevel === 2 && bathroomTiles.length > 0) {
-                        drawBathroom();
+                    else if(currentLevel === 2 && bathroomTiles.length > 0) { 
+                        drawBathroom(); 
                     } else if (currentLevel === 3 && level3Objects.length > 0) {
                         drawLevel3Room();
                         drawLevel3Objects();
@@ -2171,38 +1889,39 @@
                 if(currentLevel === 1) {
                     currentPlayer.x = Math.max(playerWidth / 2, Math.min(canvas.width - playerWidth / 2, currentPlayer.x));
                     currentPlayer.y = Math.max(playerHeight, Math.min(canvas.height - playerHeight / 6, currentPlayer.y));
-                    initHangers();
+                    initHangers(); 
                 } else if (currentLevel === 2) {
                      currentPlayer.x = Math.max(playerWidth / 2, Math.min(canvas.width - playerWidth / 2, currentPlayer.x));
                      currentPlayer.y = Math.max(playerHeight/2, Math.min(canvas.height - playerHeight/2, currentPlayer.y));
-                     if (bathroomTiles.length === 0) {
+                     if (bathroomTiles.length === 0) { 
                          initBathroomGrid();
                          makeRandomTileMessy();
                          makeRandomTileMessy();
                      }
                 } else if (currentLevel === 3) {
                     currentPlayer.x = Math.max(playerWidth / 2, Math.min(LEVEL3_ROOM_WIDTH - playerWidth / 2, currentPlayer.x));
-                    currentPlayer.y = canvas.height - playerHeight / 2 - 10;
+                    currentPlayer.y = canvas.height - playerHeight / 2 - 10; 
                     joanFollower.y = currentPlayer.y;
-                    if(level3Objects.length === 0) initLevel3Objects();
+                    if(level3Objects.length === 0) initLevel3Objects(); 
                 }
                 redrawCanvas();
             }
-
+            
             if(gameRunning || (!mainTitleScreen.classList.contains('hidden') && gameContainer.classList.contains('hidden')) || (!startScreen.classList.contains('hidden') && !level2StartScreen.classList.contains('hidden') && !level3StartScreen.classList.contains('hidden'))) {
                  drawJoanSpriteInGame();
             }
         }
-
+        
         document.addEventListener('DOMContentLoaded', () => {
-            detectTouchDevice();
-            setupTouchControls();
-            showMainTitleScreen();
-            resizeCanvas();
-            fury = 0;
-            drawJoanSpriteInGame();
+            detectTouchDevice(); 
+            setupTouchControls(); 
+            showMainTitleScreen(); 
+            resizeCanvas(); 
+            fury = 0; 
+            drawJoanSpriteInGame(); 
         });
 
     </script>
 </body>
 </html>
+
