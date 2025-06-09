@@ -1,4 +1,768 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mommie Dearest: Gameplay & Visual Refinements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #201030;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0; /* Full bleed for title screen */
+            overflow: hidden;
+        }
+        .game-outer-container { 
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px; 
+            box-sizing: border-box;
+        }
+        #mainTitleScreen {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ_sOCsvwWzNku28WZrCTFpPYTlA3ZhsHZ4c2zlJXgs40U0uYZ0');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 20px;
+            box-sizing: border-box;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        #mainTitleScreen h1 {
+            font-size: 2.5em; 
+            margin-bottom: 1em; 
+            color: #ff69b4; 
+        }
+        #mainTitleScreen button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #000000 !important; 
+            background-color: #f0f0f0; 
+            border-color: #cccccc; 
+            box-shadow: 2px 2px 0 #aaaaaa;
+        }
+         #mainTitleScreen button:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+            background-color: #dddddd;
+        }
+        #levelTransitionScreen {
+            width: 100%;
+            height: 100%;
+            background-color: #100818; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px #000000;
+            z-index: 3000; 
+            position: absolute; 
+            top: 0;
+            left: 0;
+        }
+        #levelTransitionScreen p { font-size: 3em; margin-bottom: 0.2em; }
+        #levelTransitionScreen h2 { font-size: 1.8em; color: #ff69b4; }
+
+        .game-container {
+            background-color: #302040; border: 4px solid #504060;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); padding: 10px;
+            border-radius: 8px; text-align: center; width: 100%; max-width: 500px;
+            display: flex; flex-direction: column; align-items: center; position: relative; 
+        }
+        canvas {
+            background-color: #1a0a23; border: 2px solid #504060;
+            margin: 0 auto 10px auto; max-width: 100%; height: auto;
+            image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;
+            touch-action: none;
+        }
+        .ui-element {
+            background-color: #403050; border: 2px solid #605070;
+            padding: 6px 10px; margin: 3px; border-radius: 4px;
+            font-size: 0.8em; display: inline-block;
+        }
+        button, .touch-button { 
+            font-family: 'Press Start 2P', cursive; background-color: #ff69b4;
+            color: #fff; border: 2px solid #ff1493; padding: 10px 15px;
+            margin-top: 10px; border-radius: 4px; cursor: pointer;
+            box-shadow: 2px 2px 0 #c71585; transition: all 0.1s ease;
+            user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+        }
+        button:active, .touch-button:active { transform: translate(2px, 2px); box-shadow: none; }
+        button:disabled {
+            background-color: #777; border-color: #555; color: #aaa;
+            cursor: not-allowed; box-shadow: 2px 2px 0 #333;
+        }
+        .message-box { 
+            background-color: rgba(0,0,0,0.85); border: 2px solid #ff69b4;
+            padding: 15px; border-radius: 8px; position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 1000; text-align: center; width: 85%; max-width: 380px;
+        }
+        .game-over-active, .game-win-active { /* Shared style for full screen overlays */
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            color: #FFFFFF; display: flex !important; 
+            flex-direction: column; align-items: center; justify-content: center; 
+            padding: 20px; box-sizing: border-box; z-index: 2000; border-radius: 8px; 
+        }
+        .game-over-active { background-color: #000000; }
+        .game-win-active  { background-color: #224422; } /* Slightly different background for win */
+
+        .game-over-active #gameOverTitle, .game-win-active #gameWinTitle { display: none; }
+        .game-over-joan-image, .game-win-image { /* Shared style for the image on these screens */
+            max-width: 70%; max-height: 50vh; object-fit: contain; margin-bottom: 20px;
+            border: 3px solid #ff1493; border-radius: 4px;
+        }
+        .game-over-active p, .game-win-active p { 
+            color: #FFFFFF !important; font-size: 1em; 
+            text-shadow: 1px 1px 2px #000000; margin: 8px 0; 
+        }
+        .game-over-active button, .game-win-active button { margin-top: 25px; }
+
+        .hidden { display: none !important; }
+        .fury-bar-container {
+            width: 90%; max-width: 200px; height: 20px; background-color: #555;
+            border: 2px solid #777; border-radius: 4px; margin: 5px auto; overflow: hidden;
+        }
+        .fury-bar { height: 100%; width: 0%; background-color: #ff0000; transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out; }
+        .joan-sprite {
+            width: 80px; height: 120px; margin: 5px auto; border: 2px solid #504060;
+            background-color: #101010; overflow: hidden; display: flex; 
+            align-items: center; justify-content: center; 
+        }
+        .joan-sprite img { width: 100%; height: 100%; object-fit: cover; }
+
+        .touch-controls {
+            flex-direction: row; justify-content: space-around; align-items: center;
+            width: 100%; max-width: 300px; margin-top: 10px; padding: 5px; position: relative; z-index: 50; 
+        }
+        .touch-dpad { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 5px; width: 120px; height: 120px; }
+        .touch-button { padding: 8px; font-size: 0.9em; display: flex; align-items: center; justify-content: center; margin: 0; }
+        .dpad-center { grid-column: 2; grid-row: 2; background-color: #403050 !important; box-shadow: none !important; border-color: #605070 !important; }
+        #touchUp { grid-column: 2; grid-row: 1; } #touchLeft { grid-column: 1; grid-row: 2; }
+        #touchRight { grid-column: 3; grid-row: 2; } #touchDown { grid-column: 2; grid-row: 3; }
+        #touchAction { width: 80px; height: 80px; font-size: 0.8em; padding: 10px; }
+
+        @media (max-width: 600px) { 
+            #mainTitleScreen h1 { font-size: 2em; }
+            #mainTitleScreen button { font-size: 1em; padding: 12px 25px; }
+            #levelTransitionScreen p { font-size: 2em; }
+            #levelTransitionScreen h2 { font-size: 1.5em; }
+        }
+        @media (max-width: 400px) {
+            .ui-element { font-size: 0.7em; padding: 5px 8px; }
+            .message-box { padding: 10px; font-size: 0.85em; }
+            .game-over-active p, .game-win-active p { font-size: 0.9em; }
+            .joan-sprite { width: 60px; height: 90px; } 
+            .fury-bar-container { height: 15px; }
+            .touch-dpad { width: 100px; height: 100px; }
+            .touch-button { font-size: 0.8em; }
+            #touchAction { width: 70px; height: 70px; }
+            .game-over-joan-image, .game-win-image { max-width: 90%; max-height: 40vh; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-outer-container">
+        <div id="mainTitleScreen">
+            <h1>Mommie Dearest</h1>
+            <button id="playFromTitleButton">Play Game</button>
+        </div>
+
+        <div id="levelTransitionScreen" class="hidden">
+            <p>Level 1</p>
+            <h2>No Wire Hangers!</h2> </div>
+
+        <div id="gameContainer" class="game-container hidden">
+            <h1 id="mainGameTitle" class="text-lg sm:text-xl font-bold mb-1 text-center text-pink-400">Mommie Dearest</h1>
+            <h2 id="subGameTitle" class="text-md sm:text-lg mb-2 text-center text-pink-300">Christina's Closet Clear-out</h2>
+
+            <div id="inGameUI" class="flex flex-wrap justify-center items-center mb-2">
+                <div class="ui-element">Score: <span id="score">0</span></div>
+                <div class="ui-element">Fury: <span id="furyValue">0</span>/100</div>
+            </div>
+            
+            <div id="furyBarContainer" class="fury-bar-container">
+                <div id="furyBar" class="fury-bar"></div>
+            </div>
+
+            <div id="joanSpriteContainer" class="joan-sprite"></div>
+            <canvas id="gameCanvas" width="400" height="300"></canvas>
+            <div id="touchControls" class="touch-controls hidden">
+                <div class="touch-dpad">
+                    <button class="touch-button" id="touchUp">▲</button>
+                    <button class="touch-button" id="touchLeft">◀</button>
+                    <div class="dpad-center"></div>
+                    <button class="touch-button" id="touchRight">▶</button>
+                    <button class="touch-button" id="touchDown">▼</button>
+                </div>
+                <button class="touch-button" id="touchAction">ACT</button>
+            </div>
+            
+            <div id="startScreen" class="message-box hidden"> 
+                <h3 class="text-md mb-1">Closet Calamity!</h3>
+                <p class="mb-2 text-xs sm:text-sm">Help Christina clean the closet! Move with <strong class="text-yellow-300">W/A/S/D</strong> or <strong class="text-yellow-300">ARROW KEYS</strong>. Press <strong class="text-yellow-300">SPACE</strong> or <strong class="text-yellow-300">ENTER</strong> (or <strong class="text-yellow-300">ACT</strong> button) near a hanger.</p>
+                <p class="text-xs sm:text-sm">Get <span class="text-gray-400">WIRE HANGERS</span>. Avoid <span class="text-orange-400">WOODEN</span> ones!</p>
+                <button id="startButton">Start Game</button>
+            </div>
+
+            <div id="gameOverScreen" class="hidden"> 
+                <h3 id="gameOverTitle" class="text-md mb-1">GAME OVER</h3> 
+                <img id="largeJoanGameOver" class="game-over-joan-image" src="" alt="Game Over Joan">
+                <p id="gameOverMessageText" class="mb-2 text-xs sm:text-sm">Joan found the wire hangers!</p>
+                <p class="mb-1 text-xs sm:text-sm">Final Score: <span id="finalScoreText">0</span></p>
+                <button id="playAgainButton">Play Again?</button>
+            </div>
+
+            <div id="gameWinScreen" class="hidden"> 
+                <h3 id="gameWinTitle" class="text-md mb-1">YOU WIN!</h3> 
+                <img id="winScreenImage" class="game-win-image" src="" alt="Victory!"> <p id="gameWinMessageText">You cleaned the closet... for now.</p>
+                <p class="mb-1 text-xs sm:text-sm">Final Score: <span id="winFinalScoreText">0</span></p>
+                <button id="playAgainWinButton">Play Again?</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const gameOuterContainer = document.querySelector('.game-outer-container');
+        const mainTitleScreen = document.getElementById('mainTitleScreen');
+        const levelTransitionScreen = document.getElementById('levelTransitionScreen');
+        const gameContainer = document.getElementById('gameContainer'); 
+        
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreDisplay = document.getElementById('score');
+        const furyDisplay = document.getElementById('furyValue');
+        const furyBar = document.getElementById('furyBar');
+        const startScreen = document.getElementById('startScreen'); 
+        const gameOverScreen = document.getElementById('gameOverScreen');
+        const gameWinScreen = document.getElementById('gameWinScreen'); // New win screen element
+        
+        const playFromTitleButton = document.getElementById('playFromTitleButton');
+        const startButton = document.getElementById('startButton'); 
+        const playAgainButton = document.getElementById('playAgainButton');
+        const playAgainWinButton = document.getElementById('playAgainWinButton'); // New play again button for win screen
+        
+        const largeJoanGameOverImg = document.getElementById('largeJoanGameOver');
+        const gameOverMessageTextElem = document.getElementById('gameOverMessageText');
+        const finalScoreTextElem = document.getElementById('finalScoreText');
+        const winScreenImageElem = document.getElementById('winScreenImage');
+        const gameWinMessageTextElem = document.getElementById('gameWinMessageText');
+        const winFinalScoreTextElem = document.getElementById('winFinalScoreText');
+
+
+        const joanSpriteContainer = document.getElementById('joanSpriteContainer');
+        const touchControlsContainer = document.getElementById('touchControls');
+
+        const mainGameTitleHeader = document.getElementById('mainGameTitle'); 
+        const subGameTitleHeader = document.getElementById('subGameTitle');   
+        const inGameUI = document.getElementById('inGameUI');
+        const furyBarContainer = document.getElementById('furyBarContainer');
+
+        const soundGameOver = new Audio('https://www.soundboard.com/track/download/269370'); 
+        const soundGameStart = new Audio('https://www.soundboard.com/track/download/269387'); 
+        const soundFuryIncrease = new Audio('https://www.soundboard.com/track/download/269371'); 
+        const soundWoodenHanger = new Audio('https://www.soundboard.com/track/download/269372'); 
+        // Optional: const soundGameWin = new Audio('path/to/win_sound.mp3');
+        
+        function playSound(audioElement) { /* ... same ... */ 
+            audioElement.currentTime = 0;
+            audioElement.play().catch(error => {
+                console.error("Error playing sound:", error);
+            });
+        }
+
+        const joanImageURLs = { /* ... same ... */ 
+            low: 'https://m.media-amazon.com/images/M/MV5BNjA2ZWI1ZTYtYTVlZS00OTZiLTkzZTItNGI0YTc5YjQ4MWQ4XkEyXkFqcGc@._V1_.jpg',
+            medium: 'https://www.cinematicrandomness.com/wp-content/uploads/2021/04/mommiedear001-1024x576.jpg',
+            high: 'https://m.media-amazon.com/images/M/MV5BNzBiNWQzN2QtMTY3Mi00ZTExLTg4MmYtOTcyZTEwY2Q0YTVmXkEyXkFqcGc@._V1_FMjpg_UX1920_.jpg',
+            gameOver: 'https://m.media-amazon.com/images/M/MV5BYmNiMDgwZTYtZDdkOC00MDRlLWI0MDItNjVlMjkzMjViNDYzXkEyXkFqcGc@._V1_FMjpg_UX625_.jpg',
+            // Placeholder for a "win" image - maybe a calmer Joan or happy Christina?
+            win: 'https://m.media-amazon.com/images/M/MV5BNjA2ZWI1ZTYtYTVlZS00OTZiLTkzZTItNGI0YTc5YjQ4MWQ4XkEyXkFqcGc@._V1_.jpg' // Using low fury Joan for now
+        };
+        let currentJoanImageInGame = null; 
+
+        // Game Constants
+        const WIN_SCORE = 30; // Score needed to win
+        const HANGER_SPRITE_SCALE = 2; 
+        const HANGER_WIDTH = 18 * HANGER_SPRITE_SCALE; 
+        const HANGER_HEIGHT = 13 * HANGER_SPRITE_SCALE; 
+        const WIRE_HANGER_COLOR = '#E0E0E0'; // Lighter silver
+        const WIRE_HANGER_HIGHLIGHT_COLOR = '#FFFFFF';
+        const WOOD_HANGER_COLOR = '#8B4513'; 
+        const WOOD_HANGER_ACCENT_COLOR = '#A0522D'; 
+
+
+        const MAX_FURY = 100;
+        const CHRISTINA_SPRITE_WIDTH = 24; 
+        const CHRISTINA_SPRITE_HEIGHT = 36;
+        const NUM_HANGERS = 6; 
+        const FURY_INCREASE_INTERVAL = 2200; 
+        const FURY_PER_INTERVAL = 2;
+        const FURY_PENALTY_WOOD = 20; 
+        const FURY_REDUCTION_WIRE = 2; 
+        const WIRE_HANGER_PROBABILITY = 0.60; // Initial probability
+        const CHRISTINA_SPEED = 3;
+        const INTERACTION_RADIUS = 12; 
+
+        let score = 0;
+        let fury = 0;
+        let hangers = [];
+        let gameIntervalId = null;
+        let furyIntervalId = null;
+        let gameRunning = false;
+        let christina = { x: 50, y: 50, width: CHRISTINA_SPRITE_WIDTH, height: CHRISTINA_SPRITE_HEIGHT, speed: CHRISTINA_SPEED };
+        const keysPressed = {};
+        let isTouchDevice = false;
+        let furySoundPlayedThresholds = { forty: false, seventyFive: false };
+
+        function detectTouchDevice() { isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)); }
+        
+        function createHanger(x, y, forceWire = false) { 
+            const type = forceWire ? 'wire' : (Math.random() < WIRE_HANGER_PROBABILITY ? 'wire' : 'wood');
+            return { x, y, type, width: HANGER_WIDTH, height: HANGER_HEIGHT, collected: false };
+        }
+
+        function ensureAtLeastOneWireHanger() {
+            const activeHangers = hangers.filter(h => !h.collected);
+            const hasWireHanger = activeHangers.some(h => h.type === 'wire');
+            if (!hasWireHanger && activeHangers.length > 0) {
+                // Find a wooden hanger to convert
+                const woodenHangerToConvert = activeHangers.find(h => h.type === 'wood');
+                if (woodenHangerToConvert) {
+                    woodenHangerToConvert.type = 'wire';
+                } else if (activeHangers.length < NUM_HANGERS) { 
+                    // If all are wire but collected, and we can add more, this case is less likely with current replacement.
+                    // For now, this focuses on converting an existing wood if no active wires.
+                }
+            }
+        }
+
+        function initHangers() { 
+            hangers = [];
+            const safeMargin = 20; 
+            for (let i = 0; i < NUM_HANGERS; i++) {
+                let newHanger; let attempts = 0; let placedWithoutOverlap;
+                do {
+                    placedWithoutOverlap = true;
+                    newHanger = createHanger( 
+                        Math.random() * (canvas.width - HANGER_WIDTH - 2 * safeMargin) + safeMargin, 
+                        Math.random() * (canvas.height - HANGER_HEIGHT - 2 * safeMargin) + safeMargin 
+                    );
+                    if (isOverlapping(newHanger, christina, 30)) { placedWithoutOverlap = false; continue; }
+                    for (let j = 0; j < hangers.length; j++) {
+                        if (isOverlapping(newHanger, hangers[j])) { placedWithoutOverlap = false; break; }
+                    }
+                    attempts++;
+                } while (!placedWithoutOverlap && attempts < 50); 
+                if(placedWithoutOverlap) hangers.push(newHanger);
+                else console.warn("Could not place a hanger without overlap in initHangers.");
+            }
+            ensureAtLeastOneWireHanger(); // Ensure at least one wire hanger after initial placement
+        }
+        function isOverlapping(obj1, obj2, buffer = 5) { // Added a small default buffer
+            return obj1.x < obj2.x + obj2.width + buffer &&
+                   obj1.x + obj1.width + buffer > obj2.x &&
+                   obj1.y < obj2.y + obj2.height + buffer &&
+                   obj1.y + obj1.height + buffer > obj2.y;
+        }
+        function drawClosetBackground() { /* ... same ... */ 
+            ctx.fillStyle = '#4a2e1a'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#3b2414'; ctx.lineWidth = 2;
+            for (let i = 0; i < canvas.height; i += 10) { ctx.beginPath(); ctx.moveTo(0, i + Math.random() * 5 - 2.5); ctx.lineTo(canvas.width, i + Math.random() * 5 - 2.5); ctx.stroke(); }
+            ctx.strokeStyle = '#2c1b0f'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(canvas.width * 0.1, 0); ctx.lineTo(canvas.width * 0.1, canvas.height); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(canvas.width * 0.9, 0); ctx.lineTo(canvas.width * 0.9, canvas.height); ctx.stroke();
+        }
+
+        function drawHanger(hanger) {
+            if (hanger.collected) return;
+            ctx.imageSmoothingEnabled = false; 
+            const s = HANGER_SPRITE_SCALE; 
+            const x = hanger.x;
+            const y = hanger.y;
+
+            if (hanger.type === 'wood') {
+                ctx.fillStyle = WOOD_HANGER_COLOR;
+                // Hook (centered, more defined)
+                ctx.fillRect(x + s*7, y, s*4, s*3); // Stem
+                ctx.fillRect(x + s*6, y + s*1, s*1, s*1); 
+                ctx.fillRect(x + s*5, y + s*2, s*1, s*1); 
+                ctx.fillRect(x + s*11, y + s*1, s*1, s*1);
+                ctx.fillRect(x + s*12, y + s*2, s*1, s*1);
+
+                // Top bar
+                ctx.fillRect(x, y + s*3, s*18, s*3);
+                // Shoulders
+                ctx.fillRect(x + s*1, y + s*6, s*16, s*2);
+                ctx.fillRect(x + s*2, y + s*8, s*14, s*2);
+                // Bottom bar
+                ctx.fillRect(x + s*3, y + s*10, s*12, s*2); // Total height s*12 (24px)
+
+                ctx.fillStyle = WOOD_HANGER_ACCENT_COLOR;
+                ctx.fillRect(x + s*1, y + s*4, s*16, s*1); // Highlight on top bar
+                ctx.fillRect(x + s*4, y + s*10, s*10, s*1); // Highlight on bottom bar
+
+            } else { // Wire hanger
+                ctx.fillStyle = WIRE_HANGER_COLOR;
+                const hookCenterX = x + s*9; // Center of an 18s wide hanger
+                // Hook
+                ctx.fillRect(hookCenterX - s*1, y, s*2, s*5); // Stem
+                ctx.fillRect(hookCenterX - s*2, y + s*1, s*1, s*2);
+                ctx.fillRect(hookCenterX - s*3, y + s*2, s*1, s*1);
+                ctx.fillRect(hookCenterX + s*1, y + s*1, s*1, s*2);
+                ctx.fillRect(hookCenterX + s*2, y + s*2, s*1, s*1);
+
+                // Shoulders (thin lines forming a triangle)
+                const shoulderY = y + s*5;
+                // Left shoulder (diagonal line)
+                ctx.fillRect(x, shoulderY + s*3, s*9, s*1);
+                ctx.fillRect(x + s*1, shoulderY + s*2, s*7, s*1);
+                ctx.fillRect(x + s*2, shoulderY + s*1, s*5, s*1);
+                ctx.fillRect(x + s*3, shoulderY, s*3, s*1);
+                // Right shoulder (diagonal line)
+                ctx.fillRect(x + s*9, shoulderY + s*3, s*9, s*1);
+                ctx.fillRect(x + s*10, shoulderY + s*2, s*7, s*1);
+                ctx.fillRect(x + s*11, shoulderY + s*1, s*5, s*1);
+                ctx.fillRect(x + s*12, shoulderY, s*3, s*1);
+                
+                // Bottom bar
+                ctx.fillRect(x, y + s*10, s*18, s*1); // Total height s*11 (22px)
+
+                ctx.fillStyle = WIRE_HANGER_HIGHLIGHT_COLOR;
+                ctx.fillRect(hookCenterX - s*1, y + s*1, s*1, s*1); // Glint
+            }
+        }
+
+        function drawChristina() { /* ... same ... */ 
+            const p = 2; const baseX = christina.x - (CHRISTINA_SPRITE_WIDTH / 2); const baseY = christina.y - CHRISTINA_SPRITE_HEIGHT;    
+            ctx.imageSmoothingEnabled = false; ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(baseX + p*3, baseY, p*6, p*2); ctx.fillRect(baseX + p*2, baseY + p*2, p*8, p*1); 
+            ctx.fillRect(baseX + p*1, baseY + p*3, p*10, p*2); ctx.fillRect(baseX, baseY + p*4, p*12, p*1);
+            ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*1, baseY + p*3, p*10, p*1);
+            ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*8, baseY + p*1, p*2, p*1); 
+            ctx.fillRect(baseX + p*9, baseY + p*2, p*1, p*2); ctx.fillRect(baseX + p*7, baseY + p*2, p*1, p*2); 
+            ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*8, baseY + p*2, p*1, p*1); 
+            ctx.fillStyle = '#FEFDE2'; ctx.fillRect(baseX + p*1, baseY + p*5, p*2, p*3); 
+            ctx.fillRect(baseX + p*9, baseY + p*5, p*2, p*3); ctx.fillRect(baseX + p*3, baseY + p*7, p*6, p*1);
+            ctx.fillRect(baseX + p*2, baseY + p*6, p*1, p*1); ctx.fillRect(baseX + p*9, baseY + p*6, p*1, p*1);
+            ctx.fillStyle = '#FFDBAC'; ctx.fillRect(baseX + p*3, baseY + p*5, p*6, p*3); 
+            ctx.fillRect(baseX + p*4, baseY + p*8, p*4, p*1); 
+            ctx.fillStyle = '#00AEFF'; ctx.fillRect(baseX + p*4, baseY + p*6, p*1, p*1); 
+            ctx.fillRect(baseX + p*7, baseY + p*6, p*1, p*1); 
+            ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*3, baseY + p*9, p*6, p*3); 
+            ctx.fillRect(baseX + p*1, baseY + p*9, p*2, p*2); ctx.fillRect(baseX + p*9, baseY + p*9, p*2, p*2); 
+            ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*1, baseY + p*11, p*2, p*1);
+            ctx.fillRect(baseX + p*9, baseY + p*11, p*2, p*1);
+            ctx.fillStyle = '#FFFFFF'; ctx.fillRect(baseX + p*2, baseY + p*12, p*8, p*1); 
+            ctx.fillRect(baseX + p*1, baseY + p*13, p*10, p*2); ctx.fillRect(baseX + p*0, baseY + p*15, p*12, p*1); 
+            ctx.fillStyle = '#50C878'; ctx.fillRect(baseX + p*0, baseY + p*16, p*12, p*1);
+            ctx.fillStyle = '#FFDBAC'; ctx.fillRect(baseX + p*1, baseY + p*11, p*2, p*2); 
+            ctx.fillRect(baseX + p*9, baseY + p*11, p*2, p*2); ctx.fillRect(baseX + p*3, baseY + p*17, p*2, p*1); 
+            ctx.fillRect(baseX + p*7, baseY + p*17, p*2, p*1); 
+        }
+        function drawJoanSpriteInGame() { /* ... same ... */ 
+            let imageUrlToLoad;
+            if (fury >= 75) imageUrlToLoad = joanImageURLs.high;
+            else if (fury >= 40) imageUrlToLoad = joanImageURLs.medium;
+            else imageUrlToLoad = joanImageURLs.low;
+            if (!currentJoanImageInGame || (currentJoanImageInGame && currentJoanImageInGame.src !== imageUrlToLoad)) {
+                joanSpriteContainer.innerHTML = ''; currentJoanImageInGame = document.createElement('img');
+                currentJoanImageInGame.src = imageUrlToLoad; currentJoanImageInGame.alt = "Joan Crawford"; 
+                currentJoanImageInGame.onerror = function() {
+                    joanSpriteContainer.innerHTML = '<p style="color: #ff69b4; font-size: 0.7em; padding: 5px;">Joan Error!</p>';
+                    console.error("Error loading Joan's in-game image: " + imageUrlToLoad); currentJoanImageInGame = null; 
+                };
+                joanSpriteContainer.appendChild(currentJoanImageInGame);
+            }
+        }
+        function updateUI() { /* ... same ... */ 
+            scoreDisplay.textContent = score; furyDisplay.textContent = `${fury}/${MAX_FURY}`;
+            furyBar.style.width = `${(fury / MAX_FURY) * 100}%`;
+            if (fury >= MAX_FURY * 0.75) furyBar.style.backgroundColor = '#ff0000';
+            else if (fury >= MAX_FURY * 0.4) furyBar.style.backgroundColor = '#ffa500';
+            else furyBar.style.backgroundColor = '#ffff00';
+            if(gameRunning) drawJoanSpriteInGame(); 
+        }
+        function increaseFury() { /* ... same ... */ 
+            if (!gameRunning) return; const oldFury = fury;
+            fury = Math.min(fury + FURY_PER_INTERVAL, MAX_FURY);
+            if (fury >= 40 && oldFury < 40 && !furySoundPlayedThresholds.forty) { playSound(soundFuryIncrease); furySoundPlayedThresholds.forty = true; } 
+            else if (fury >= 75 && oldFury < 75 && !furySoundPlayedThresholds.seventyFive) { playSound(soundFuryIncrease); furySoundPlayedThresholds.seventyFive = true; }
+            updateUI(); if (fury >= MAX_FURY) triggerGameOver("Joan's fury has boiled over!");
+        }
+        function updateChristinaPosition() { /* ... same ... */ 
+            let dx = 0; dy = 0;
+            if (keysPressed['w'] || keysPressed['ArrowUp']) dy -= christina.speed; if (keysPressed['s'] || keysPressed['ArrowDown']) dy += christina.speed;
+            if (keysPressed['a'] || keysPressed['ArrowLeft']) dx -= christina.speed; if (keysPressed['d'] || keysPressed['ArrowRight']) dx += christina.speed;
+            christina.x += dx; christina.y += dy;
+            christina.x = Math.max(christina.width / 2, Math.min(canvas.width - christina.width / 2, christina.x));
+            christina.y = Math.max(christina.height, Math.min(canvas.height - christina.height / 6, christina.y)); 
+        }
+
+        function attemptInteraction() { 
+            if (!gameRunning) return; // Don't allow interaction if game not running
+            for (let i = hangers.length - 1; i >= 0; i--) {
+                const h = hangers[i]; 
+                if (h.collected) continue;
+                const christinaCenterX = christina.x; 
+                const christinaCenterY = christina.y - christina.height / 2; 
+                const hangerCenterX = h.x + h.width / 2; 
+                const hangerCenterY = h.y + h.height / 2;
+                const dist = Math.sqrt(Math.pow(christinaCenterX - hangerCenterX, 2) + Math.pow(christinaCenterY - hangerCenterY, 2));
+                
+                if (dist < (h.width / 2 + christina.width / 2 + INTERACTION_RADIUS)) { 
+                    h.collected = true; 
+                    if (h.type === 'wire') { 
+                        score++; 
+                        fury = Math.max(0, fury - FURY_REDUCTION_WIRE); 
+                        if (score >= WIN_SCORE) {
+                            triggerGameWin();
+                            return; // Exit early as game is won
+                        }
+                    } else { 
+                        fury = Math.min(fury + FURY_PENALTY_WOOD, MAX_FURY); 
+                        playSound(soundWoodenHanger); 
+                    }
+                    
+                    // Replace hanger logic
+                    let replacementHanger; let attempts = 0; let placedWithoutOverlap;
+                    const safeMargin = 20;
+                    do {
+                        placedWithoutOverlap = true;
+                        replacementHanger = createHanger( 
+                            Math.random() * (canvas.width - HANGER_WIDTH - 2 * safeMargin) + safeMargin, 
+                            Math.random() * (canvas.height - HANGER_HEIGHT - 2 * safeMargin) + safeMargin 
+                        );
+                        if (isOverlapping(replacementHanger, christina, 30)) { placedWithoutOverlap = false; continue; }
+                        for (const existingHanger of hangers) {
+                            if (existingHanger !== h && !existingHanger.collected && isOverlapping(replacementHanger, existingHanger)) {
+                                placedWithoutOverlap = false; break;
+                            }
+                        }
+                        attempts++;
+                    } while (!placedWithoutOverlap && attempts < 50);
+
+                    if (placedWithoutOverlap) {
+                        hangers.splice(i, 1, replacementHanger);
+                    } else {
+                        console.warn("Could not place replacement hanger without overlap. Removing old one only.");
+                        hangers.splice(i, 1); 
+                    }
+                    ensureAtLeastOneWireHanger(); // Ensure a wire hanger exists after replacement
+                    
+                    updateUI();
+                    if (fury >= MAX_FURY && gameRunning) { // Check gameRunning again in case win condition was met
+                        triggerGameOver("Joan saw that!");
+                    }
+                    return; 
+                }
+            }
+        }
+        function redrawCanvas() { /* ... same ... */ 
+            if (!canvas.width || !canvas.height) return; 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawClosetBackground(); hangers.forEach(drawHanger); drawChristina();
+        }
+        function gameLoop() { if (!gameRunning) return; updateChristinaPosition(); redrawCanvas(); gameIntervalId = requestAnimationFrame(gameLoop); }
+
+        function showGameElements(show) {
+            const elementsToToggle = [
+                mainGameTitleHeader, subGameTitleHeader, inGameUI,
+                furyBarContainer, joanSpriteContainer, canvas
+            ];
+            elementsToToggle.forEach(el => {
+                if (el) {
+                    if (show) el.classList.remove('hidden');
+                    else el.classList.add('hidden');
+                }
+            });
+            if (touchControlsContainer) {
+                if (show && isTouchDevice) touchControlsContainer.classList.remove('hidden');
+                else touchControlsContainer.classList.add('hidden');
+            }
+        }
+
+        function showMainTitleScreen() {
+            mainTitleScreen.classList.remove('hidden');
+            gameContainer.classList.add('hidden'); 
+            levelTransitionScreen.classList.add('hidden');
+            startScreen.classList.add('hidden'); 
+            gameOverScreen.classList.add('hidden');
+            gameOverScreen.classList.remove('game-over-active');
+            gameWinScreen.classList.add('hidden');
+            gameWinScreen.classList.remove('game-win-active');
+        }
+
+        function showLevelTransition() {
+            mainTitleScreen.classList.add('hidden');
+            levelTransitionScreen.classList.remove('hidden');
+            gameContainer.classList.add('hidden'); 
+            startScreen.classList.add('hidden');
+            setTimeout(() => {
+                levelTransitionScreen.classList.add('hidden');
+                gameContainer.classList.remove('hidden'); 
+                startScreen.classList.remove('hidden'); 
+                
+                showGameElements(false); 
+                mainGameTitleHeader.classList.remove('hidden'); 
+                subGameTitleHeader.classList.remove('hidden');
+                joanSpriteContainer.classList.remove('hidden'); 
+                fury = 0; 
+                drawJoanSpriteInGame();
+            }, 2000); 
+        }
+        
+        function actualGameStart() { 
+            score = 0; fury = 0; 
+            furySoundPlayedThresholds.forty = false; furySoundPlayedThresholds.seventyFive = false;
+            christina.x = canvas.width / 2; christina.y = canvas.height - CHRISTINA_SPRITE_HEIGHT / 2; 
+            if (canvas.height < CHRISTINA_SPRITE_HEIGHT * 1.5) christina.y = canvas.height - christina.height / 6;
+            
+            gameRunning = true;
+            startScreen.classList.add('hidden'); 
+            gameOverScreen.classList.remove('game-over-active'); 
+            gameOverScreen.classList.add('hidden');
+            gameWinScreen.classList.remove('game-win-active');
+            gameWinScreen.classList.add('hidden');
+            
+            showGameElements(true); 
+            
+            drawJoanSpriteInGame(); 
+            playSound(soundGameStart); 
+            initHangers(); updateUI(); 
+            if (furyIntervalId) clearInterval(furyIntervalId);
+            furyIntervalId = setInterval(increaseFury, FURY_INCREASE_INTERVAL);
+            if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
+            gameLoop(); 
+        }
+
+        function triggerGameOver(message) {
+            if (!gameRunning) return; // Don't trigger if game already ended (e.g. by win)
+            gameRunning = false;
+            if (furyIntervalId) clearInterval(furyIntervalId);
+            if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
+            fury = MAX_FURY; 
+            
+            largeJoanGameOverImg.src = joanImageURLs.gameOver;
+            largeJoanGameOverImg.onerror = function() {
+                gameOverMessageTextElem.innerHTML = "GAME OVER!<br>Joan's image failed to load.";
+                console.error("Error loading Joan's GAME OVER image.");
+            };
+            gameOverMessageTextElem.textContent = message || "NO WIRE HANGERS EVER!";
+            finalScoreTextElem.textContent = score;
+
+            showGameElements(false); 
+            gameContainer.classList.remove('hidden'); 
+            gameOverScreen.classList.remove('hidden');
+            gameOverScreen.classList.add('game-over-active');
+            
+            playSound(soundGameOver); 
+        }
+        
+        function triggerGameWin() {
+            if (!gameRunning) return; // Don't trigger if game already ended
+            gameRunning = false;
+            if (furyIntervalId) clearInterval(furyIntervalId);
+            if (gameIntervalId) cancelAnimationFrame(gameIntervalId);
+
+            winScreenImageElem.src = joanImageURLs.win; // Using a placeholder "win" image
+            winScreenImageElem.onerror = function() {
+                gameWinMessageTextElem.innerHTML = "YOU WIN!<br>Image failed to load.";
+                console.error("Error loading Win Screen image.");
+            };
+            winFinalScoreTextElem.textContent = score;
+
+            showGameElements(false);
+            gameContainer.classList.remove('hidden');
+            gameWinScreen.classList.remove('hidden');
+            gameWinScreen.classList.add('game-win-active');
+            // if(soundGameWin) playSound(soundGameWin); 
+        }
+
+
+        playFromTitleButton.addEventListener('click', showLevelTransition);
+        startButton.addEventListener('click', actualGameStart); 
+        playAgainButton.addEventListener('click', () => { showMainTitleScreen(); resizeCanvas(); });
+        playAgainWinButton.addEventListener('click', () => { showMainTitleScreen(); resizeCanvas(); });
+
+
+        window.addEventListener('keydown', (e) => { /* ... same ... */ 
+            keysPressed[e.key.toLowerCase()] = true;
+            if ([' ', 'Enter'].includes(e.key) && gameRunning) { e.preventDefault(); attemptInteraction(); }
+            if (gameRunning && ['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(e.key.toLowerCase())) e.preventDefault();
+        });
+        window.addEventListener('keyup', (e) => { keysPressed[e.key.toLowerCase()] = false; });
+        function setupTouchControls() { /* ... same ... */ 
+            if (!isTouchDevice) return; const touchMap = {'touchUp': 'arrowup', 'touchDown': 'arrowdown', 'touchLeft': 'arrowleft', 'touchRight': 'arrowright'};
+            for (const [btnId, keyName] of Object.entries(touchMap)) {
+                const button = document.getElementById(btnId);
+                if (button) {
+                    button.addEventListener('touchstart', (e) => { e.preventDefault(); keysPressed[keyName] = true; }, { passive: false });
+                    button.addEventListener('touchend', (e) => { e.preventDefault(); keysPressed[keyName] = false; }, { passive: false });
+                    button.addEventListener('touchcancel', (e) => { e.preventDefault(); keysPressed[keyName] = false; }, { passive: false });
+                }
+            }
+            const actionButton = document.getElementById('touchAction');
+            if (actionButton) { actionButton.addEventListener('touchstart', (e) => { e.preventDefault(); if (gameRunning) attemptInteraction(); }, { passive: false }); }
+        }
+        function resizeCanvas() { /* ... same ... */ 
+            const container = document.querySelector('.game-container');
+            let availableWidth = container.clientWidth - 20; 
+            let availableHeight = window.innerHeight - container.offsetTop - 50; 
+            if (isTouchDevice && touchControlsContainer.style.display === 'flex' && !touchControlsContainer.classList.contains('hidden')) { availableHeight -= (touchControlsContainer.offsetHeight + 20); } 
+            else { availableHeight -= 20; }
+            availableHeight = Math.max(200, availableHeight); const aspectRatio = 4/3;
+            let newWidth = availableWidth; let newHeight = newWidth / aspectRatio;
+            if (newHeight > availableHeight) { newHeight = availableHeight; newWidth = newHeight * aspectRatio; }
+            newWidth = Math.min(newWidth, availableWidth); canvas.width = Math.max(240, newWidth); canvas.height = Math.max(180, newHeight); 
+            if (!gameRunning && mainTitleScreen.classList.contains('hidden')) { 
+                christina.x = canvas.width / 2; christina.y = canvas.height - CHRISTINA_SPRITE_HEIGHT / 2;
+                if (canvas.height < CHRISTINA_SPRITE_HEIGHT * 1.5) christina.y = canvas.height - christina.height / 6;
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                if (canvas.width && canvas.height) drawClosetBackground();
+            } else if (gameRunning) {
+                christina.x = Math.max(christina.width / 2, Math.min(canvas.width - christina.width / 2, christina.x));
+                christina.y = Math.max(christina.height, Math.min(canvas.height - christina.height / 6, christina.y));
+                initHangers(); redrawCanvas();
+            }
+            if(gameRunning || (!mainTitleScreen.classList.contains('hidden') && gameContainer.classList.contains('hidden')) || (!startScreen.classList.contains('hidden'))) {
+                 drawJoanSpriteInGame();
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            detectTouchDevice(); 
+            setupTouchControls(); 
+            showMainTitleScreen(); 
+            resizeCanvas(); 
+            fury = 0; 
+            drawJoanSpriteInGame(); 
+        });
+
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
